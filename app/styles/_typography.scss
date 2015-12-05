@@ -1,0 +1,43 @@
+html {
+  font-size: 18px;
+}
+
+body {
+
+}
+
+p,
+li,
+label,
+input,
+.btn {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.large {
+  font-size: 1.25rem;
+}
+
+h2 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: $brand-primary;
+  font-size: 1.5rem;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+h3 {
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+legend {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
