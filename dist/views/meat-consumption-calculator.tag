@@ -54,7 +54,7 @@
       </div>
 
       <div class="col-sm-12">
-        <img src="images/graph.jpg" style="width: 100%">
+        <img src="images/graph.b71b580d.jpg" style="width: 100%">
       </div>
 
       <div class="col-sm-12">
