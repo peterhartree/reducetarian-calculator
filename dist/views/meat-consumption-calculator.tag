@@ -62,7 +62,7 @@
         <ul class="nav">
           <li class="row">
             <div class="col-md-3">
-              <img src="/images/pig.3713f8a8.png" class="margin-bottom">
+              <img src="images/pig.3713f8a8.png" class="margin-bottom">
             </div>
             <div class="col-md-9 vertical-align-text">
               <p>spares 8 farmed animals from cruelty</p>
@@ -70,7 +70,7 @@
           </li>
           <li class="row">
             <div class="col-md-3">
-              <img src="/images/pig.3713f8a8.png" class="margin-bottom">
+              <img src="images/pig.3713f8a8.png" class="margin-bottom">
             </div>
             <div class="col-md-9 vertical-align-text">
               <p>saves the planet 9 gallons of water and 10 lbs. of CO2</p>
@@ -78,7 +78,7 @@
           </li>
           <li class="row">
             <div class="col-md-3">
-              <img src="/images/heart.01abf2cb.png" class="margin-bottom">
+              <img src="images/heart.01abf2cb.png" class="margin-bottom">
             </div>
             <div class="col-md-9 vertical-align-text">
               <p>reduces his or risk of heart disease, diabetes, and certain kinds of cancers by 4%</p>
