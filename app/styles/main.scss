@@ -6,6 +6,7 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
 
+@import "helpers/_bootstrap-xxs.scss";
 @import "helpers/_margins.scss";
 @import "helpers/_squares.scss";
 
@@ -33,8 +34,14 @@ body {
   }
 
   input {
-    margin-left: 0 !important;
+    margin-top: -1px !important;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
     position: relative !important;
+
+    &:focus {
+      outline: none !important;
+    }
   }
 }
 
@@ -60,12 +67,20 @@ body {
     border: none;
     text-transform: uppercase;
     color: $brand-primary;
+
   }
 }
 
 .panel {
   border: 3px solid $brand-primary;
   padding: 15px 0 15px 0;
+
+  .panel {
+    background-color: #eee;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 
 .btn {
@@ -81,5 +96,16 @@ body {
 @media screen and (min-width: 768px) {
   .container {
     max-width: 730px;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+.graph {
+  text-align: center;
+  img {
+    max-width: 500px;
   }
 }

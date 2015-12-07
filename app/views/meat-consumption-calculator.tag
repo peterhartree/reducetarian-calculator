@@ -6,7 +6,7 @@
       <p>You'll be amazed at how you compare to the rest of the world...</p>
       <p>Assuming breakfast, lunch, dinner, and two snacks, <strong>how many of your meals per day have meat (red meat, poultry, or seafood) in them?</strong></p>
 
-      <div class="row margin-bottom">
+      <div class="row margin-top-small margin-bottom">
         <radio-box
           model={ReducetarianCalculator.userInput.meatyMealsPerDay}
           name="meaty_meals"
@@ -50,26 +50,47 @@
 
     <div id="result" class="row" hide={ ReducetarianCalculator.state.pledgeTaken }>
       <div class="col-sm-12">
-        <p class="large">If you eat <strong>{ReducetarianCalculator.calculations.meatyMealsPerWeek}</strong> meaty meals per week... you eat more meat than <strong>X%</strong> of people on the planet!</p>
+        <p>If you eat <strong>{ReducetarianCalculator.calculations.meatyMealsPerWeek}</strong> meaty meals per week... you eat more meat than <strong>X%</strong> of people on the planet!</p>
       </div>
 
-      <div class="col-sm-12">
+      <div class="col-sm-12 graph margin-top">
         <img src="images/graph.jpg" style="width: 100%">
       </div>
 
-      <div class="col-sm-12">
-        <p>Every month, the typical reducetarian...</p>
-        <ul>
-          <li>spares 8 farmed animals from cruelty</li>
-          <li>saves the planet 9 gallons of water and 10 lbs. of CO2</li>
-          <li>and reduces his or risk of heart disease, diabetes, and certain kinds of cancers by 4%</li>
+      <div class="col-sm-12 margin-top-larger">
+        <h2 class="margin-bottom-large">Every month, the typical reducetarian...</h2>
+        <ul class="nav">
+          <li class="row">
+            <div class="col-md-3">
+              <img src="/images/pig.png" class="margin-bottom">
+            </div>
+            <div class="col-md-9 vertical-align-text">
+              <p>spares 8 farmed animals from cruelty</p>
+            </div>
+          </li>
+          <li class="row">
+            <div class="col-md-3">
+              <img src="/images/pig.png" class="margin-bottom">
+            </div>
+            <div class="col-md-9 vertical-align-text">
+              <p>saves the planet 9 gallons of water and 10 lbs. of CO2</p>
+            </div>
+          </li>
+          <li class="row">
+            <div class="col-md-3">
+              <img src="/images/heart.png" class="margin-bottom">
+            </div>
+            <div class="col-md-9 vertical-align-text">
+              <p>reduces his or risk of heart disease, diabetes, and certain kinds of cancers by 4%</p>
+            </div>
+          </li>
         </ul>
 
-        <p>So will you be a reducetarian?</p>
+        <h3>So will you be a reducetarian?</h3>
       </div>
     </div>
 
-    <form id="pledge" class="panel clearfix" onsubmit={ ReducetarianCalculator.pledge } hide={ ReducetarianCalculator.state.pledgeTaken }>
+    <form id="pledge" class="panel clearfix margin-top" onsubmit={ ReducetarianCalculator.pledge } hide={ ReducetarianCalculator.state.pledgeTaken }>
       <fieldset>
         <div class="col-sm-12">
           <legend>Become a reducetarian</legend>
@@ -115,21 +136,25 @@
           </div>
         </div>
         <div class="col-md-6">
-          <img style="width: 50%;" src="http://static1.squarespace.com/static/5395130de4b09ddb699acb37/t/5581d138e4b0f10369b10cc7/1434571066639/?format=750w">
+
 
           <div id="pledge-impact" hide={ReducetarianCalculator.userInput.strategy == null}>
-            <p>Awesome! In just 30 days, you will:</p>
-            <ul>
-              <li>spare <strong>{ReducetarianCalculator.calculations.animalsSaved}</strong> farmed animals from cruelty</li>
-              <li>saves the planet <strong>{ReducetarianCalculator.calculations.waterSaved}</strong> gallons of water and <strong>{ReducetarianCalculator.calculations.co2Saved}</strong> lbs. of CO2</li>
-              <li>reduce your risk of heart disease, diabetes, and certain kinds of cancers</li>
-            </ul>
+            <div class="panel">
+              <p>Awesome! In just 30 days, you will:</p>
+              <ul>
+                <li>spare <strong>{ReducetarianCalculator.calculations.animalsSaved}</strong> farmed animals from cruelty</li>
+                <li>saves the planet <strong>{ReducetarianCalculator.calculations.waterSaved}</strong> gallons of water and <strong>{ReducetarianCalculator.calculations.co2Saved}</strong> lbs. of CO2</li>
+                <li>reduce your risk of heart disease, diabetes, and certain kinds of cancers</li>
+              </ul>
+            </div>
+
+            <p class="no-margin-bottom small">We'll send you a couple emails during your pledge to help keep you on track. We'll never spam you, and you can unsubscribe anytime.</p>
           </div>
         </div>
 
         <div class="col-md-12">
-          <input type="submit" class="btn btn-primary margin-bottom" value="Take the pledge">
-          <p class="no-margin-bottom">We'll send you a couple emails during your pledge to help keep you on track. We'll never spam you, and you can unsubscribe anytime.</p>
+          <input type="submit" class="btn btn-primary " value="Take the pledge">
+
         </div>
       </fieldset>
     </form>
@@ -137,7 +162,9 @@
     <div id="thanks" class="panel clearfix" show={ ReducetarianCalculator.state.pledgeTaken }>
       <div class="col-sm-12">
         <h2>You're awesome!</h2>
-        <p>Encourage your friends to join you on <strong>pledge strategy</strong>!</p>
+        <p>Encourage your friends to join you.</p>
+        <p>If everyone who took the pledge convinced two of their friends to take it, the entire planet
+        would be reducetarian within days!</p>
         <p><a href="">Share on Twitter</a></p>
         <p><a href="">Share on Facebook</a></p>
       </div>
