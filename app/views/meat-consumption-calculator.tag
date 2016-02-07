@@ -128,7 +128,7 @@
             <ul class="row list-typical-benefits">
               <li class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-4">
                 <div class="wrap-impact-image">
-                  <img src="images/heart.png" class="margin-bottom">
+                  <img src="http://peterhartree.github.io/reducetarian-calculator/images/heart.png" class="margin-bottom">
                 </div>
 
                   <p>reduces his or her risk of heart disease, diabetes, and certain kinds of&nbsp;cancers.</p>
@@ -136,7 +136,7 @@
               </li>
               <li class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-4">
                 <div class="wrap-impact-image">
-                  <img src="images/pig.png" class="margin-bottom">
+                  <img src="http://peterhartree.github.io/reducetarian-calculator/images/pig.png" class="margin-bottom">
                 </div>
 
                   <p>spares 8 farmed animals from&nbsp;cruelty</p>
@@ -144,7 +144,7 @@
               </li>
               <li class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-4">
                 <div class="wrap-impact-image">
-                  <img src="images/water-droplet.png" class="margin-bottom">
+                  <img src="http://peterhartree.github.io/reducetarian-calculator/images/water-droplet.png" class="margin-bottom">
                 </div>
 
                   <p>saves the planet 9 gallons of water and 10 lbs. of&nbsp;CO2</p>
@@ -245,7 +245,6 @@
   this.setMealsPerDay = function(e) {
     var meatyMealsPerDay = parseInt(e.target.innerText);
     ReducetarianCalculator.setUserInput('meatyMealsPerDay', meatyMealsPerDay);
-    console.log(ReducetarianCalculator.userInput.meatyMealsPerDay);
     ReducetarianCalculator.calculateGlobalConsumptionPercentile();
     ReducetarianCalculator.calculateFactorToAverageConsumption();
     ReducetarianCalculator.updateImpactCalculation();
