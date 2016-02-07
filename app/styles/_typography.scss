@@ -1,9 +1,30 @@
+// Set default font size
+//
+//
+
 html {
   font-size: 18px;
 }
 
-body {
+// Headings
+//
+//
 
+h1 {
+  font-weight: 700 !important;
+}
+
+h2,
+h3 {
+  font-weight: 700 !important;
+
+  strong {
+    color: $brand-primary;
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
 }
 
 p,
@@ -15,30 +36,19 @@ input,
   line-height: 1.5;
 }
 
+p, ul {
+  margin-top: 0;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
 input {
   border-width: 3px !important;
 }
 
-.large {
-  font-size: 1.25rem;
-}
 
-h2 {
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: $brand-primary;
-  font-size: 1.5rem;
-
-  &:first-child {
-    margin-top: 0;
-  }
-}
-
-h3 {
-  &:first-child {
-    margin-top: 0;
-  }
-}
 
 legend {
   font-weight: 700;
@@ -47,17 +57,28 @@ legend {
   letter-spacing: 1px;
 }
 
+.large {
+  font-size: 1.25rem;
+}
+
 .small {
   font-size: 0.9rem;
 }
 
-@media screen and (min-width: $screen-md) {
-  .vertical-align-text {
-    display: table;
-    height: 100px;
-    p {
-      display: table-cell;
-      vertical-align: middle;
+.smaller {
+  font-size: 0.8rem;
+}
+
+.text-gray {
+  color: $gray-light;
+}
+
+.info {
+  a {
+    color: $brand-primary;
+
+    &:hover {
+      text-decoration: underline;
     }
   }
 }

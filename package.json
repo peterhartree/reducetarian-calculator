@@ -53,5 +53,8 @@
         2
       ]
     }
+  },
+  "dependencies": {
+    "connect-modrewrite": "^0.8.5"
   }
 }

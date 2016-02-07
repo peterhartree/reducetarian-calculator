@@ -2,6 +2,8 @@
 // generator-webapp 1.1.0
 'use strict';
 
+var modRewrite = require('connect-modrewrite');
+
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'

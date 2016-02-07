@@ -4,6 +4,7 @@ function ReducetarianCalculator() {
   this.views = {}; // Reference object for storing all view templates (RiotJS tags)
   this.userInput = {};
   this.userInput.meatyMealsPerDay = null;
+  this.userInput.firstResponseToMeatyMealsPerDay = null;
   this.userInput.strategy = 'meatless_mondays';
   this.calculations = {};
   this.calculations.meatyMealsPerWeek = null;
@@ -12,10 +13,162 @@ function ReducetarianCalculator() {
   this.calculations.co2Saved = null;
   this.state = {};
   this.state.pledgeTaken = false;
+  this.facts = {};
+  this.facts.globalAverageDailyConsumption = 0.1;
+  this.facts.portionSizes = [];
+  this.facts.portionSizes[1] = {
+    'lbs' : 0.23,
+    'globalPercentile' : 82
+  };
+  this.facts.portionSizes[2] = {
+    'lbs' : 0.34,
+    'globalPercentile' : 96
+  };
+  this.facts.portionSizes[3] = {
+    'lbs' : 0.45,
+    'globalPercentile' : 99.5
+  };
+  this.charts = {};
+  this.charts.barChart = null;
+  this.charts.donutChart = null;
+  this.colors = {};
+  this.colors.brandPrimary = '#89b100';
+  this.colors.brandPrimaryHighlight = '#a9c83a';
+  this.colors.gray = '#555';
+  this.colors.grayHighlight = '#777';
 }
+
+ReducetarianCalculator.prototype.updateCharts = function() {
+  this.updateBarChart();
+  this.updateDonutChart();
+};
+
+ReducetarianCalculator.prototype.updateBarChart = function() {
+  if(this.charts.barChart !== null) {
+    // Update existing chart
+    this.charts.barChart.datasets[0].bars[1].value = this.facts.portionSizes[this.userInput.meatyMealsPerDay].lbs;
+    this.charts.barChart.update();
+  }
+  else {
+    // Draw new chart
+    var data = {
+      labels: ["Global average", "You"],
+      datasets: [
+        {
+          label: "",
+          fillColor: this.colors.gray,
+          strokeColor: this.colors.gray,
+          highlightFill: this.colors.grayHighlight,
+          highlightStroke: this.colors.grayHighlight,
+          data: [this.facts.globalAverageDailyConsumption, this.facts.portionSizes[this.userInput.meatyMealsPerDay].lbs]
+        }
+      ]
+    };
+    var ctx = document.getElementById("barChart").getContext("2d");
+    this.charts.barChart = new Chart(ctx).Bar(data);
+    this.charts.barChart.datasets[0].bars[0].fillColor = this.colors.brandPrimary;
+    this.charts.barChart.datasets[0].bars[0].strokeColor = this.colors.brandPrimary;
+    this.charts.barChart.datasets[0].bars[0].highlightFill = this.colors.brandPrimaryHighlight;
+    this.charts.barChart.datasets[0].bars[0].highlightStroke = this.colors.brandPrimaryHighlight;
+    this.charts.barChart.update();
+  }
+};
+
+ReducetarianCalculator.prototype.updateDonutChart = function() {
+  if(this.charts.donutChart !== null) {
+    // Update existing chart
+    this.charts.donutChart.segments[0].value = this.facts.portionSizes[this.userInput.meatyMealsPerDay].globalPercentile;
+    this.charts.donutChart.segments[1].value = 100 - this.facts.portionSizes[this.userInput.meatyMealsPerDay].globalPercentile;
+    this.charts.donutChart.update();
+  }
+  else {
+    // Draw new chart
+    var data = [
+      {
+          value: this.facts.portionSizes[this.userInput.meatyMealsPerDay].globalPercentile,
+          color: this.colors.brandPrimary,
+          highlight: this.colors.brandPrimary,
+          label: "People who eat less meat than you"
+      },
+      {
+          value: 100 - this.facts.portionSizes[this.userInput.meatyMealsPerDay].globalPercentile,
+          color: this.colors.gray,
+          highlight: this.colors.grayHighlight,
+          label: "People who eat more meat than you"
+      }
+    ];
+    var ctx = document.getElementById("donutChart").getContext("2d");
+    this.charts.donutChart = new Chart(ctx).Doughnut(data);
+    this.charts.donutChart.datasets[0].bars[0].fillColor = this.colors.brandPrimary;
+    this.charts.donutChart.datasets[0].bars[0].strokeColor = this.colors.brandPrimary;
+    this.charts.donutChart.datasets[0].bars[0].highlightFill = this.colors.brandPrimaryHighlight;
+    this.charts.donutChart.datasets[0].bars[0].highlightStroke = this.colors.brandPrimaryHighlight;
+    this.charts.donutChart.update();
+  }
+};
+
+
+
+/*
+ReducetarianCalculator.prototype.getInfographicClass = function() {
+  var infographicClass = '';
+  console.log(this.userInput.firstResponseToMeatyMealsPerDay);
+  console.log(this.userInput.meatyMealsPerDay);
+  switch(this.userInput.firstResponseToMeatyMealsPerDay) {
+    case '1':
+      infographicClass += 'one-portion';
+    break;
+
+    case '2':
+      infographicClass += 'two-portions';
+    break;
+
+    case '3':
+      infographicClass += 'three-portions';
+    break;
+  }
+
+  if(this.userInput.firstResponseToMeatyMealsPerDay !== this.userInput.meatyMealsPerDay) {
+    switch(this.userInput.meatyMealsPerDay) {
+      case '1':
+        infographicClass += ' to-one-portion';
+      break;
+
+      case '2':
+        infographicClass += ' to-two-portions';
+      break;
+
+      case '3':
+        infographicClass += ' to-three-portions';
+      break;
+    }
+  }
+
+  console.log(infographicClass);
+
+  return infographicClass;
+} */
+
+ReducetarianCalculator.prototype.setUserInput = function(key, value) {
+  // We'll store the first response for our records, and also for
+  // controlling infographic animation.
+  if(key === 'meatyMealsPerDay' && this.userInput.meatyMealsPerDay === null) {
+    this.setUserInput('firstResponseToMeatyMealsPerDay', value);
+  }
+
+  this.userInput[key] = value;
+};
 
 ReducetarianCalculator.prototype.calculateMeatyMealsPerWeek = function() {
   this.calculations.meatyMealsPerWeek = this.userInput.meatyMealsPerDay * 7;
+};
+
+ReducetarianCalculator.prototype.calculateGlobalConsumptionPercentile = function() {
+  this.calculations.globalConsumptionPercentile = this.facts.portionSizes[this.userInput.meatyMealsPerDay].globalPercentile;
+};
+
+ReducetarianCalculator.prototype.calculateFactorToAverageConsumption = function() {
+  this.calculations.factorToAverageConsumption = this.facts.portionSizes[this.userInput.meatyMealsPerDay].lbs / this.facts.globalAverageDailyConsumption;
 };
 
 ReducetarianCalculator.prototype.updateImpactCalculation = function() {

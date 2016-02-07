@@ -1,0 +1,30 @@
+// Radio button
+.radio {
+  border: none;
+  background-color: transparent;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 5px;
+  font-weight: 400;
+  transition: background-color .1s 0s ease-in-out,color .1s 0s ease-in-out;
+
+  &:hover {
+    color: $brand-primary;
+    cursor: pointer;
+  }
+
+  &.selected {
+    color: $brand-primary;
+  }
+
+  input {
+    margin-top: -1px !important;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+    position: relative !important;
+
+    &:focus {
+      outline: none !important;
+    }
+  }
+}

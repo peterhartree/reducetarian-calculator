@@ -1,0 +1,56 @@
+.wrap-plate {
+  width: 72px;
+  height: 72px;
+  display: inline-block;
+  position: relative;
+  font-size: 72px;
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color .1s 0s ease-in-out,color .1s 0s ease-in-out;
+
+  &.selected {
+    color: $brand-primary;
+    //animation: wiggle 0.5s both ease-in;
+  }
+
+  &:hover {
+    color: $brand-primary;
+  }
+
+  .plate-number {
+    display: block;
+    width: 72px;
+    height: 72px;
+    position: absolute;
+    top: 0%;
+    padding-top: 0;
+    padding-left: 2px;
+    line-height: 74px;
+    text-align: center;
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: 700;
+  }
+}
+
+.wrap-plate-1 {
+  .plate-number {
+    padding-right: 4px;
+  }
+}
+
+@media screen and (min-width: $screen-sm) {
+  .wrap-plate {
+    width: 108px;
+    height: 108px;
+    font-size: 108px;
+
+    .plate-number {
+      width: 108px;
+      height: 108px;
+      line-height: 110px;
+      font-size: 36px;
+    }
+  }
+}

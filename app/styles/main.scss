@@ -1,111 +1,116 @@
-$icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
-
 @import "_variables.scss";
 
-// bower:scss
-@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
-// endbower
+// Borrow a couple of stylesheets from Twitter Bootstrap.
+@import "bootstrap/_grid.scss";
+@import "bootstrap/_forms.scss";
+@import "bootstrap/_buttons.scss";
 
+// Components
+@import "components/_charts.scss";
+@import "components/_icons.scss";
+@import "components/_plates.scss";
+@import "components/_radio-buttons.scss";
+
+// Helper classes.
 @import "helpers/_bootstrap-xxs.scss";
 @import "helpers/_margins.scss";
-@import "helpers/_squares.scss";
 
 @import "_typography.scss";
 
-/* Space out content a bit */
-body {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
+// Scope everything to avoid conflict with Squarespace stylesheets.
+.meat-consumption-calculator {
 
-.radio {
-  border: none;
-  background-color: $off-white;
-  padding: 5px;
+  // Define maximum container width for larger screens
+  @media screen and (min-width: 768px) {
+    .container {
+      max-width: 680px !important;
+    }
+  }
 
-  &:hover {
+  // The result section is shown after user reveals their
+  // current diet.
+
+  .list-typical-benefits {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .wrap-impact-image {
+    img {
+      width: auto;
+      height: 100px;
+    }
+  }
+
+  // Pledge form
+  //
+  //
+
+  .wrap-pledge {
+    background-image: url('http://static1.squarespace.com/static/5395130de4b09ddb699acb37/t/563d616fe4b028bb5d47e557/1446863217561/Reduce_WebBanners046.jpg?format=1500w');
+    background-size: 100% auto;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+  }
+
+  .form-pledge__inner {
+    padding: 25px 0 25px 0;
+    border-radius: 15px;
+    background-color: #fff;
+  }
+
+  @media screen and (min-width: $screen-sm) {
+    .form-pledge__inner {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+
+  .form-pledge__legend {
+    border: none;
+    text-transform: uppercase;
     color: $brand-primary;
-    cursor: pointer;
   }
 
-  &.selected {
-    background-color: $brand-primary;
-    color: $off-white;
+  .form-pledge__input {
+    font-size: 18px;
+    height: 51px;
+    border-radius: 10px;
   }
 
-  input {
-    margin-top: -1px !important;
-    margin-left: 5px !important;
-    margin-right: 5px !important;
-    position: relative !important;
+  .form-pledge__btn-submit {
+    border-radius: 30px;
+    border: none;
 
-    &:focus {
-      outline: none !important;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 1px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 15px;
+    padding-right: 15px;
+    transition: background-color .1s 0s ease-in-out,color .1s 0s ease-in-out;
+
+    &:hover {
+      background-color: rgba(135,178,0,.8);
     }
   }
 }
 
-.radio.square {
-  border: none;
-  background-color: $off-white;
-  padding-bottom: 100%;
+// Animations
+//
+//
 
-  &.selected {
-    background-color: $brand-primary;
-    color: $off-white;
-  }
-
-  input {
-    opacity: 0;
-    position: absolute !important
-  }
-
-}
-
-#pledge {
-  legend {
-    border: none;
-    text-transform: uppercase;
-    color: $brand-primary;
-
-  }
-}
-
-.panel {
-  border: 3px solid $brand-primary;
-  padding: 15px 0 15px 0;
-
-  .panel {
-    background-color: #eee;
-    border: none;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-}
-
-.btn {
-  border-radius: 0;
-  text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
-}
-
-img {
-  max-width: 100%;
-}
-
-.graph {
-  text-align: center;
-  img {
-    max-width: 500px;
-  }
+@keyframes wiggle {
+    0%    { transform: rotate(0deg); }
+    25%    { transform: rotate(-10deg); }
+    50%    { transform: rotate(7deg); }
+    75%    { transform: rotate(-5deg); }
+    100%      { transform: rotate(0deg); }
 }
