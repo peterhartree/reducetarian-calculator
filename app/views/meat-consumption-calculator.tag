@@ -94,7 +94,7 @@
           <div class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6">
             <div class="wrap-chart margin-bottom">
               <h3>Your meat consumption is <strong>{ReducetarianCalculator.calculations.factorToAverageConsumption}</strong> times the global average!</h3>
-              <canvas id="barChart" width="300" height="300"></canvas>
+              <canvas id="barChart" width="320" height="300" style="margin-left: -20px;"></canvas>
             </div>
           </div>
 
@@ -115,7 +115,7 @@
         <div class="row margin-top-larger">
           <div class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
             <h2>What is a Reducetarian?</h2>
-            <p>A reducetarian is someone who reduces the amount of meat in their diet.</p>
+            <p>A reducetarian is someone who chooses to reduce the amount of meat in their diet.</p>
           </div>
         </div>
 

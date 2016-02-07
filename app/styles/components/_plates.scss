@@ -36,7 +36,13 @@
 
 .wrap-plate-1 {
   .plate-number {
-    padding-right: 4px;
+    padding-right: 3px;
+  }
+}
+
+.wrap-plate-2 {
+  .plate-number {
+    padding-left: 3px;
   }
 }
 
@@ -49,8 +55,8 @@
     .plate-number {
       width: 108px;
       height: 108px;
-      line-height: 110px;
-      font-size: 36px;
+      line-height: 114px;
+      font-size: 32px;
     }
   }
 }

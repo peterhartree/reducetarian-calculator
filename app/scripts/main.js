@@ -1,5 +1,30 @@
 /* global riot */
 
+// Chart.Js tweak thanks to http://stackoverflow.com/a/31918380/2078758
+
+Chart.types.Bar.extend({
+    name: "BarAlt",
+    draw: function () {
+        Chart.types.Bar.prototype.draw.apply(this, arguments);
+
+        var ctx = this.chart.ctx;
+        ctx.save();
+        // text alignment and color
+        ctx.textAlign = "center";
+        ctx.textBaseline = "bottom";
+        ctx.fillStyle = this.options.scaleFontColor;
+        // position
+        var x = this.scale.xScalePaddingLeft * 0.4;
+        var y = this.chart.height / 2;
+        // change origin
+        ctx.translate(x, y)
+        // rotate text
+        ctx.rotate(-90 * Math.PI / 180);
+        ctx.fillText(this.datasets[0].label, 0, 0);
+        ctx.restore();
+    }
+});
+
 function ReducetarianCalculator() {
   this.views = {}; // Reference object for storing all view templates (RiotJS tags)
   this.userInput = {};
@@ -55,7 +80,7 @@ ReducetarianCalculator.prototype.updateBarChart = function() {
       labels: ["Global average", "You"],
       datasets: [
         {
-          label: "",
+          label: "Lbs of meat consumption",
           fillColor: this.colors.gray,
           strokeColor: this.colors.gray,
           highlightFill: this.colors.grayHighlight,
@@ -65,7 +90,27 @@ ReducetarianCalculator.prototype.updateBarChart = function() {
       ]
     };
     var ctx = document.getElementById("barChart").getContext("2d");
-    this.charts.barChart = new Chart(ctx).Bar(data);
+    var chartOptions = {
+      scaleShowHorizontalLines: false,
+      scaleShowVerticalLines: false,
+      scaleOverride: true,
+      scaleSteps: 5,
+      scaleStepWidth: 0.1,
+      scaleStartValue: 0,
+      scaleFontSize: 14,
+
+      scaleGridLineColor : "rgba(26,26,26,.7)",
+      scaleFontColor: "rgba(26,26,26,.7)",
+      scaleFontFamily: "'proxima-nova', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+      scaleFontStyle: "bold",
+      scaleLabel: "          <%=value%>", // The spaces make room for Y axis label
+
+      tooltipFillColor: "rgba(0,0,0,0.8)",
+      tooltipFontFamily: "'proxima-nova', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+      tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %> lbs",
+    };
+
+    this.charts.barChart = new Chart(ctx).BarAlt(data, chartOptions);
     this.charts.barChart.datasets[0].bars[0].fillColor = this.colors.brandPrimary;
     this.charts.barChart.datasets[0].bars[0].strokeColor = this.colors.brandPrimary;
     this.charts.barChart.datasets[0].bars[0].highlightFill = this.colors.brandPrimaryHighlight;
@@ -88,17 +133,22 @@ ReducetarianCalculator.prototype.updateDonutChart = function() {
           value: this.facts.portionSizes[this.userInput.meatyMealsPerDay].globalPercentile,
           color: this.colors.brandPrimary,
           highlight: this.colors.brandPrimary,
-          label: "People who eat less meat than you"
+          label: "eat less meat than you"
       },
       {
           value: 100 - this.facts.portionSizes[this.userInput.meatyMealsPerDay].globalPercentile,
           color: this.colors.gray,
           highlight: this.colors.grayHighlight,
-          label: "People who eat more meat than you"
+          label: "eat more meat than you"
       }
     ];
     var ctx = document.getElementById("donutChart").getContext("2d");
-    this.charts.donutChart = new Chart(ctx).Doughnut(data);
+    var chartOptions = {
+      tooltipFillColor: "rgba(0,0,0,0.8)",
+      tooltipFontFamily: "'proxima-nova', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+      tooltipTemplate: "<%if (label){%><%= value %>% <%=label%><%}%>",
+    };
+    this.charts.donutChart = new Chart(ctx).Doughnut(data, chartOptions);
     this.charts.donutChart.datasets[0].bars[0].fillColor = this.colors.brandPrimary;
     this.charts.donutChart.datasets[0].bars[0].strokeColor = this.colors.brandPrimary;
     this.charts.donutChart.datasets[0].bars[0].highlightFill = this.colors.brandPrimaryHighlight;
