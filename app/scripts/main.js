@@ -38,21 +38,7 @@ function ReducetarianCalculator() {
   this.calculations.co2Saved = null;
   this.state = {};
   this.state.pledgeTaken = false;
-  this.facts = {};
-  this.facts.globalAverageDailyConsumption = 0.1;
-  this.facts.portionSizes = [];
-  this.facts.portionSizes[1] = {
-    'lbs' : 0.23,
-    'globalPercentile' : 82
-  };
-  this.facts.portionSizes[2] = {
-    'lbs' : 0.34,
-    'globalPercentile' : 96
-  };
-  this.facts.portionSizes[3] = {
-    'lbs' : 0.45,
-    'globalPercentile' : 99.5
-  };
+  this.facts = ReducetarianFacts.get();
   this.charts = {};
   this.charts.barChart = null;
   this.charts.donutChart = null;
@@ -228,19 +214,18 @@ ReducetarianCalculator.prototype.updateImpactCalculation = function() {
 };
 
 ReducetarianCalculator.prototype.calculateWaterSaved = function() {
-  this.calculations.waterSaved = getRandomInt(1, 10);
+  this.calculations.waterSaved = getRandomInt(1, 10); // @TODO
 };
 
 ReducetarianCalculator.prototype.calculateAnimalsSaved = function() {
-  this.calculations.animalsSaved = getRandomInt(10, 30);
+  this.calculations.animalsSaved = getRandomInt(10, 30); // @TODO
 };
 
 ReducetarianCalculator.prototype.calculateCo2Saved = function() {
-  this.calculations.co2Saved = getRandomInt(1, 10);
+  this.calculations.co2Saved = getRandomInt(1, 10); // @TODO
 };
 
 ReducetarianCalculator.prototype.pledge = function() {
-  console.log('Submitting pledge');
   ReducetarianCalculator.state.pledgeTaken = true;
 };
 
