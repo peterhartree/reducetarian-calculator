@@ -226,18 +226,15 @@ ReducetarianCalculator.prototype.calculateCo2Saved = function() {
 
 ReducetarianCalculator.prototype.pledge = function() {
 
-
-  console.log('fullname');
-  console.log(this.FULL_NAME.value);
-  console.log(this.EMAIL.value);
-
-
   var postData = {
     'FULL_NAME' : this.FULL_NAME.value,
     'EMAIL' : this.EMAIL.value,
     'STRATEGY' : ReducetarianCalculator.userInput.strategy,
+    'MEATY_DAY' : ReducetarianCalculator.userInput.meatyMealsPerDay,
+    'MEATY_DAYF' : ReducetarianCalculator.userInput.firstResponseToMeatyMealsPerDay,
   };
 
+  console.log('Sending POST request to MailChimp...');
   console.log(postData);
 
   $.ajax({
