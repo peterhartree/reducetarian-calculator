@@ -19,9 +19,9 @@ var ReducetarianFacts = (function() {
     'globalPercentile' : 99.5
   };
 
-  facts.cO2PerLbOfConsumption = 1; // ??
-  facts.waterPerLbOfConsumption = 1; // ??
-  facts.animalLivesPerLbOfConsumption = 1; // ??
+  facts.cO2PerLbOfConsumption = 14.7;
+  facts.waterPerLbOfConsumption = 5.3;
+  facts.animalLivesPerLbOfConsumption = 0.16;
 
   return {
       get: function() {

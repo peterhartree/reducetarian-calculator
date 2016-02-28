@@ -33,12 +33,15 @@ function ReducetarianCalculator() {
   this.userInput.strategy = 'meatless_mondays';
   this.calculations = {};
   this.calculations.meatyMealsPerWeek = null;
+  this.calculations.pledgedMeatyMealsPerWeek = null;
+  this.calculations.reducedConsumption = null;
   this.calculations.gallonsSaved = null;
   this.calculations.animalsSaved = null;
   this.calculations.co2Saved = null;
   this.state = {};
   this.state.pledgeTaken = false;
   this.facts = ReducetarianFacts.get();
+  this.strategies = ReducetarianStrategies.get();
   this.charts = {};
   this.charts.barChart = null;
   this.charts.donutChart = null;
@@ -144,47 +147,6 @@ ReducetarianCalculator.prototype.updateDonutChart = function() {
 };
 
 
-
-/*
-ReducetarianCalculator.prototype.getInfographicClass = function() {
-  var infographicClass = '';
-  console.log(this.userInput.firstResponseToMeatyMealsPerDay);
-  console.log(this.userInput.meatyMealsPerDay);
-  switch(this.userInput.firstResponseToMeatyMealsPerDay) {
-    case '1':
-      infographicClass += 'one-portion';
-    break;
-
-    case '2':
-      infographicClass += 'two-portions';
-    break;
-
-    case '3':
-      infographicClass += 'three-portions';
-    break;
-  }
-
-  if(this.userInput.firstResponseToMeatyMealsPerDay !== this.userInput.meatyMealsPerDay) {
-    switch(this.userInput.meatyMealsPerDay) {
-      case '1':
-        infographicClass += ' to-one-portion';
-      break;
-
-      case '2':
-        infographicClass += ' to-two-portions';
-      break;
-
-      case '3':
-        infographicClass += ' to-three-portions';
-      break;
-    }
-  }
-
-  console.log(infographicClass);
-
-  return infographicClass;
-} */
-
 ReducetarianCalculator.prototype.setUserInput = function(key, value) {
   // We'll store the first response for our records, and also for
   // controlling infographic animation.
@@ -193,6 +155,8 @@ ReducetarianCalculator.prototype.setUserInput = function(key, value) {
   }
 
   this.userInput[key] = value;
+
+  this.calculateMeatyMealsPerWeek();
 };
 
 ReducetarianCalculator.prototype.calculateMeatyMealsPerWeek = function() {
@@ -208,21 +172,54 @@ ReducetarianCalculator.prototype.calculateFactorToAverageConsumption = function(
 };
 
 ReducetarianCalculator.prototype.updateImpactCalculation = function() {
+  ReducetarianCalculator.calculateReducedConsumptionPerMonth();
   ReducetarianCalculator.calculateAnimalsSaved();
   ReducetarianCalculator.calculateCo2Saved();
   ReducetarianCalculator.calculateWaterSaved();
 };
 
+ReducetarianCalculator.prototype.calculateReducedConsumptionPerMonth = function() {
+
+  // How many meaty meals pledged per week?
+  this.strategies.forEach(function(strategy, index) {
+    if(strategy.key === ReducetarianCalculator.userInput.strategy) {
+      ReducetarianCalculator.calculations.pledgedMeatyMealsPerWeek = strategy.calculatePledgedMeatyMealsPerWeek(ReducetarianCalculator.userInput.meatyMealsPerDay);
+    }
+  });
+
+  console.log('original meaty meals per week');
+  console.log(this.calculations.meatyMealsPerWeek);
+
+  console.log('pledged meaty meals per week');
+  console.log(this.calculations.pledgedMeatyMealsPerWeek);
+
+  // How many fewer meaty meals does this mean per week?
+  this.calculations.fewerMeatyMealsPerWeek = this.calculations.meatyMealsPerWeek - this.calculations.pledgedMeatyMealsPerWeek;
+
+  // How many fewer meaty meals does this mean per month?
+  this.calculations.fewerMeatyMealsPerMonth = this.calculations.fewerMeatyMealsPerWeek * 4.3;
+
+  // How many lbs of reduced consumption per month?
+  this.calculations.lbsReducedConsumptionPerMonth = this.roundToTwoDecimalPlaces(this.calculations.fewerMeatyMealsPerMonth * this.facts.portionSizes[1].lbs);
+
+  console.log('lbs of reduced consumption per month');
+  console.log(this.calculations.lbsReducedConsumptionPerMonth);
+}
+
+ReducetarianCalculator.prototype.roundToTwoDecimalPlaces = function(number) {
+  return Math.round(number * 10) / 10;
+}
+
 ReducetarianCalculator.prototype.calculateWaterSaved = function() {
-  this.calculations.waterSaved = getRandomInt(1, 10); // @TODO
+  this.calculations.waterSavedPerMonth = this.roundToTwoDecimalPlaces(this.calculations.lbsReducedConsumptionPerMonth * this.facts.waterPerLbOfConsumption);
 };
 
 ReducetarianCalculator.prototype.calculateAnimalsSaved = function() {
-  this.calculations.animalsSaved = getRandomInt(10, 30); // @TODO
+  this.calculations.animalsSavedPerMonth = this.roundToTwoDecimalPlaces(this.calculations.lbsReducedConsumptionPerMonth * this.facts.animalLivesPerLbOfConsumption);
 };
 
 ReducetarianCalculator.prototype.calculateCo2Saved = function() {
-  this.calculations.co2Saved = getRandomInt(1, 10); // @TODO
+  this.calculations.co2SavedPerMonth = this.roundToTwoDecimalPlaces(this.calculations.lbsReducedConsumptionPerMonth * this.facts.cO2PerLbOfConsumption);
 };
 
 ReducetarianCalculator.prototype.pledge = function() {

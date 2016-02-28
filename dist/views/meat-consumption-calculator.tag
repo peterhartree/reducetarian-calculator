@@ -139,7 +139,7 @@
                   <img src="http://peterhartree.github.io/reducetarian-calculator/images/pig.png" class="margin-bottom">
                 </div>
 
-                  <p>spares 8 farmed animals from&nbsp;cruelty</p>
+                  <p>spares several farmed animals from&nbsp;cruelty</p>
 
               </li>
               <li class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-4">
@@ -147,7 +147,7 @@
                   <img src="http://peterhartree.github.io/reducetarian-calculator/images/water-droplet.png" class="margin-bottom">
                 </div>
 
-                  <p>saves the planet 9 gallons of water and 10 lbs. of&nbsp;CO2</p>
+                  <p>saves the planet many gallons of water and lbs. of&nbsp;CO2</p>
 
               </li>
 
@@ -186,13 +186,6 @@
                     <radio-box
                       model={ReducetarianCalculator.userInput.strategy}
                       name="strategy"
-                      value="weekday_vegetarian"
-                      label="Weekday Vegetarian"
-                      size="large">
-                    </radio-box>
-                    <radio-box
-                      model={ReducetarianCalculator.userInput.strategy}
-                      name="strategy"
                       value="meatless_mondays"
                       label="Meatless Mondays"
                       size="large">
@@ -204,6 +197,20 @@
                       label="Vegetarian before 6pm"
                       size="large">
                     </radio-box>
+                    <radio-box
+                      model={ReducetarianCalculator.userInput.strategy}
+                      name="strategy"
+                      value="weekday_vegetarian"
+                      label="Weekday Vegetarian"
+                      size="large">
+                    </radio-box>
+                    <radio-box
+                      model={ReducetarianCalculator.userInput.strategy}
+                      name="strategy"
+                      value="everyday_vegetarian"
+                      label="Everyday Vegetarian"
+                      size="large">
+                    </radio-box>
                   </div>
                 </div>
               </div>
@@ -213,8 +220,8 @@
                   <div class="panel">
                     <p>Awesome! In just 30 days, you will:</p>
                     <ul>
-                      <li>spare <strong>{ReducetarianCalculator.calculations.animalsSaved}</strong> farmed animals from cruelty</li>
-                      <li>save the planet <strong>{ReducetarianCalculator.calculations.waterSaved}</strong> gallons of water and <strong>{ReducetarianCalculator.calculations.co2Saved}</strong> lbs. of CO2</li>
+                      <li>spare <strong>{ReducetarianCalculator.calculations.animalsSavedPerMonth}</strong> farmed animals from cruelty</li>
+                      <li>save the planet <strong>{ReducetarianCalculator.calculations.waterSavedPerMonth}</strong> gallons of water and <strong>{ReducetarianCalculator.calculations.co2SavedPerMonth}</strong> lbs. of CO2</li>
                       <li>reduce your risk of heart disease, diabetes, and certain kinds of cancers</li>
                     </ul>
                   </div>
