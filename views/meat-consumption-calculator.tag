@@ -8,7 +8,6 @@
     }
   </style>
 
-
   <svg display="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
       <symbol id="icon-info" viewBox="0 0 1024 1024">
@@ -36,6 +35,18 @@
         </symbol>
     </defs>
   </svg>
+
+  <!-- Facebook and Twitter SDKs -->
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=545196598910530";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+  <!-- End Facebook and Twitter SDKs -->
 
   <div class="meat-consumption-calculator">
 
@@ -83,7 +94,7 @@
     <div hide={ ReducetarianCalculator.userInput.meatyMealsPerDay == null }>
 
       <div id="result" class="text-align-center" hide={ ReducetarianCalculator.state.pledgeTaken }>
-        <div class="row margin-top">
+        <div class="row no-margin-top">
           <div class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
             <h2>If you eat <strong>{ReducetarianCalculator.userInput.meatyMealsPerDay}</strong> meaty meals per day...</h2>
           </div>
@@ -108,7 +119,18 @@
 
         <div class="row">
           <div class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-12">
-            <p class="smaller text-gray info"><svg class="icon icon-info"><use xlink:href="#icon-info"></use></svg> We're assuming your portion sizes are typical for a US citzen. <a href="#">Learn more</a> about our data sources and assumptions.</p>
+            <p class="smaller text-gray info"><svg class="icon icon-info"><use xlink:href="#icon-info"></use></svg> We're assuming your portion sizes are typical for a US citzen. <a href="/how-much-meat/data-and-assumptions/">Learn more</a> about our data sources and assumptions.</p>
+          </div>
+        </div>
+
+        <div class="row row-pre-pledge-share margin-top-large">
+          <div class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-12">
+            <div class="wrap-btn-social">
+              <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://reducetarian.org/how-much-meat/" data-text="How much meat do you eat?" data-via="Reducetarian" data-related="Reducetarian"></a>
+            </div>
+            <div class="wrap-btn-social">
+              <div class="fb-like" data-href="http://reducetarian.org/how-much-meat/" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
+            </div>
           </div>
         </div>
 
@@ -162,89 +184,104 @@
     <div class="wrap-pledge" hide={ ReducetarianCalculator.userInput.meatyMealsPerDay == null }>
       <div class="container">
         <div class="row">
-          <form id="form-pledge" class="form-pledge clearfix margin-top-larger margin-bottom-larger col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2" onsubmit={ ReducetarianCalculator.pledge } hide={ ReducetarianCalculator.state.pledgeTaken }>
-            <fieldset class="form-pledge__inner">
-              <div class="col-sm-12 text-align-center">
-                <legend class="form-pledge__legend">Become a reducetarian</legend>
-                <p>Yes, I pledge to eat less meat for 30&nbsp;days!</p>
+          <form id="form-pledge" class="form-pledge clearfix margin-top-larger margin-bottom-larger col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2" onsubmit={ ReducetarianCalculator.pledge }>
+            <div hide={ ReducetarianCalculator.state.pledgeTaken }>
+              <fieldset class="form-pledge__inner">
+                <div class="col-sm-12 text-align-center">
+                  <legend class="form-pledge__legend">Become a reducetarian</legend>
+                  <p>Yes, I pledge to eat less meat for 30&nbsp;days!</p>
+                </div>
+                <div class="col-md-12 margin-top-small">
+                  <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="FULL_NAME" value="" class="form-control form-pledge__input" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="EMAIL" value="" class="form-control form-pledge__input" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Choose your strategy:</label>
+
+                    <div class="row">
+                      <radio-box
+                        model={ReducetarianCalculator.userInput.strategy}
+                        name="STRATEGY"
+                        value="meatless_mondays"
+                        label="Meatless Mondays"
+                        size="large">
+                      </radio-box>
+                      <radio-box
+                        model={ReducetarianCalculator.userInput.strategy}
+                        name="STRATEGY"
+                        value="vegetarian_before_six"
+                        label="Vegetarian before 6pm"
+                        size="large">
+                      </radio-box>
+                      <radio-box
+                        model={ReducetarianCalculator.userInput.strategy}
+                        name="STRATEGY"
+                        value="weekday_vegetarian"
+                        label="Weekday Vegetarian"
+                        size="large">
+                      </radio-box>
+                      <radio-box
+                        model={ReducetarianCalculator.userInput.strategy}
+                        name="STRATEGY"
+                        value="everyday_vegetarian"
+                        label="Everyday Vegetarian"
+                        size="large">
+                      </radio-box>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <div id="pledge-impact" hide={ReducetarianCalculator.userInput.strategy == null}>
+                    <div class="panel">
+                      <p>Awesome! In just 30 days, you will:</p>
+                      <ul>
+                        <li>spare <strong>{ReducetarianCalculator.calculations.animalsSavedPerMonth}</strong> farmed animals from cruelty</li>
+                        <li>save the planet <strong>{ReducetarianCalculator.calculations.waterSavedPerMonth}</strong> gallons of water and <strong>{ReducetarianCalculator.calculations.co2SavedPerMonth}</strong> lbs. of CO2</li>
+                        <li>reduce your risk of heart disease, diabetes, and certain kinds of cancers</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-12 text-align-center margin-top">
+                  <input type="submit" class="btn btn-primary form-pledge__btn-submit" value="Take the pledge">
+                  <p class="error margin-top" hide={ ReducetarianCalculator.state.mailchimpError === false }>{ReducetarianCalculator.state.mailchimpErrorMsg}</p>
+                  <p class="margin-top no-margin-bottom smaller info">We'll send you a couple emails during your pledge to help keep you on track. We'll never spam you, and you can unsubscribe&nbsp;anytime.</p>
+                </div>
+              </fieldset>
+
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_fb882689434c18d812e401042_f387e9040e" tabindex="-1" value="">
               </div>
-              <div class="col-md-12 margin-top-small">
-                <div class="form-group">
-                  <label>Name</label>
-                  <input type="text" name="full_name" value="" class="form-control form-pledge__input" required>
-                </div>
+            </div>
 
-                <div class="form-group">
-                  <label>Email</label>
-                  <input type="email" name="email" value="" class="form-control form-pledge__input" required>
-                </div>
+            <div id="thanks" class="panel clearfix" show={ ReducetarianCalculator.state.pledgeTaken }>
+              <div class="form-pledge__inner row">
+                <div class="col-sm-12">
+                  <h2>You're awesome!</h2>
+                  <p>Thanks for taking the reducetarian pledge. We've just sent you an email with some delicious recipe suggestions and a bit of advice on how to follow through on your&nbsp;pledge.</p>
 
-                <div class="form-group">
-                  <label>Choose your strategy:</label>
-
-                  <div class="row">
-                    <radio-box
-                      model={ReducetarianCalculator.userInput.strategy}
-                      name="strategy"
-                      value="meatless_mondays"
-                      label="Meatless Mondays"
-                      size="large">
-                    </radio-box>
-                    <radio-box
-                      model={ReducetarianCalculator.userInput.strategy}
-                      name="strategy"
-                      value="vegetarian_before_six"
-                      label="Vegetarian before 6pm"
-                      size="large">
-                    </radio-box>
-                    <radio-box
-                      model={ReducetarianCalculator.userInput.strategy}
-                      name="strategy"
-                      value="weekday_vegetarian"
-                      label="Weekday Vegetarian"
-                      size="large">
-                    </radio-box>
-                    <radio-box
-                      model={ReducetarianCalculator.userInput.strategy}
-                      name="strategy"
-                      value="everyday_vegetarian"
-                      label="Everyday Vegetarian"
-                      size="large">
-                    </radio-box>
+                  <h2>Encourage your friends to join&nbsp;you.</h2>
+                  <p>You can have an even bigger positive impact if you persuade your friends to become reducetarians!</p>
+                  <p>Please share this page on Facebook and Twitter and encourage your friends to take the pledge.</p>
+                  <div class="wrap-btn-social">
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://reducetarian.org/how-much-meat/" data-text="How much meat do you eat?" data-via="Reducetarian" data-related="Reducetarian"></a>
+                  </div>
+                  <div class="wrap-btn-social">
+                    <div class="fb-like" data-href="http://reducetarian.org/how-much-meat/" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <div class="col-md-12">
-                <div id="pledge-impact" hide={ReducetarianCalculator.userInput.strategy == null}>
-                  <div class="panel">
-                    <p>Awesome! In just 30 days, you will:</p>
-                    <ul>
-                      <li>spare <strong>{ReducetarianCalculator.calculations.animalsSavedPerMonth}</strong> farmed animals from cruelty</li>
-                      <li>save the planet <strong>{ReducetarianCalculator.calculations.waterSavedPerMonth}</strong> gallons of water and <strong>{ReducetarianCalculator.calculations.co2SavedPerMonth}</strong> lbs. of CO2</li>
-                      <li>reduce your risk of heart disease, diabetes, and certain kinds of cancers</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-12 text-align-center margin-top">
-                <input type="submit" class="btn btn-primary form-pledge__btn-submit" value="Take the pledge">
-                <p class="margin-top no-margin-bottom smaller info">We'll send you a couple emails during your pledge to help keep you on track. We'll never spam you, and you can unsubscribe&nbsp;anytime.</p>
-              </div>
-            </fieldset>
           </form>
-        </div>
-
-        <div id="thanks" class="panel clearfix" show={ ReducetarianCalculator.state.pledgeTaken }>
-          <div class="col-sm-12">
-            <h2>You're awesome!</h2>
-            <p>Encourage your friends to join you.</p>
-            <p>If everyone who took the pledge convinced two of their friends to take it, the entire planet
-            would be reducetarian within days!</p>
-            <p><a href="">Share on Twitter</a></p>
-            <p><a href="">Share on Facebook</a></p>
-          </div>
         </div>
       </div>
     </div>
@@ -261,7 +298,7 @@
 
   this.set = function(e) {
     switch(e.target.name) {
-      case 'strategy':
+      case 'STRATEGY':
         ReducetarianCalculator.setUserInput('strategy', e.target.value);
         ReducetarianCalculator.updateImpactCalculation();
         riot.update();
