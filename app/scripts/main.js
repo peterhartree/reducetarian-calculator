@@ -39,6 +39,8 @@ function ReducetarianCalculator() {
   this.calculations.animalsSaved = null;
   this.calculations.co2Saved = null;
   this.state = {};
+  this.state.mailchimpError = false;
+  this.state.mailchimpErrorMsg = null;
   this.state.pledgeTaken = false;
   this.facts = ReducetarianFacts.get();
   this.strategies = ReducetarianStrategies.get();
@@ -223,12 +225,50 @@ ReducetarianCalculator.prototype.calculateCo2Saved = function() {
 };
 
 ReducetarianCalculator.prototype.pledge = function() {
-  ReducetarianCalculator.state.pledgeTaken = true;
+
+
+  console.log('fullname');
+  console.log(this.FULL_NAME.value);
+  console.log(this.EMAIL.value);
+
+
+  var postData = {
+    'FULL_NAME' : this.FULL_NAME.value,
+    'EMAIL' : this.EMAIL.value,
+    'STRATEGY' : ReducetarianCalculator.userInput.strategy,
+  };
+
+  console.log(postData);
+
+  $.ajax({
+    url: '//reducetarian.us9.list-manage.com/subscribe/post-json?u=fb882689434c18d812e401042&amp;id=f387e9040e&c=?',
+    data: postData,
+    success: function(response) {
+      if(response.result === 'success') {
+        ReducetarianCalculator.state.mailchimpError = false;
+        ReducetarianCalculator.state.pledgeTaken = true;
+        riot.update();
+      }
+      else {
+        console.log('Error: ' + response.msg);
+        ReducetarianCalculator.state.mailchimpError = true;
+        ReducetarianCalculator.state.mailchimpErrorMsg = response.msg;
+
+        riot.update();
+      }
+    },
+    dataType: 'jsonp',
+    error: function (resp, text) {
+        console.log('mailchimp ajax submit error: ' + text);
+    }
+  });
+
 };
 
 var ReducetarianCalculator = new ReducetarianCalculator();
 
 ReducetarianCalculator.views.main = riot.mount('meat-consumption-calculator');
+
 
 riot.route.start();
 

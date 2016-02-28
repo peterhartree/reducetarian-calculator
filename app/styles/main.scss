@@ -103,6 +103,20 @@
   }
 }
 
+.wrap-btn-social {
+  display: inline-block;
+}
+
+
+#form-pledge .wrap-btn-social + .wrap-btn-social {
+  float: right;
+}
+
+.fb_iframe_widget {
+  position: relative;
+  top: -8px;
+}
+
 // Animations
 //
 //
