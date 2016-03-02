@@ -65,7 +65,7 @@ ReducetarianCalculator.prototype.initSocialTracking = function() {
     FB.Event.subscribe('edge.create', function(url) {
       // For now we'll send two events, because Peter isn't sure which
       // will be more convenient for reporting.
-      ReducetarianCalculator.sendEvent('facebook like', url);
+      ReducetarianCalculator.sendEvent('Clicked Facebook like button', url);
       if(typeof ga !== 'undefined') {
         ga('send', 'social', 'facebook', 'like', url);
       }
@@ -80,7 +80,7 @@ ReducetarianCalculator.prototype.initSocialTracking = function() {
     twttr.events.bind(
       'click',
       function () {
-        ReducetarianCalculator.sendEvent('clicked tweet button');
+        ReducetarianCalculator.sendEvent('Clicked tweet button');
 
         if(typeof ga !== 'undefined') {
           ga('send', 'social', 'twitter', 'share');
@@ -198,15 +198,16 @@ ReducetarianCalculator.prototype.setUserInput = function(key, value) {
   // controlling infographic animation.
   if(key === 'meatyMealsPerDay' && this.userInput.meatyMealsPerDay === null) {
     this.setUserInput('firstResponseToMeatyMealsPerDay', value);
-    this.sendEvent('First response to meaty meals per day', value);
+    this.sendEvent('Submitted first response to meaty meals per day', value);
 
     // Social APIs will be ready by now.
     this.initSocialTracking();
   }
+  else {
+    this.sendEvent('Updated meaty meals per day', value);
+  }
 
   this.userInput[key] = value;
-
-  this.sendEvent('Update meaty meals per day', value);
 
   this.calculateMeatyMealsPerWeek();
 };
@@ -290,14 +291,14 @@ ReducetarianCalculator.prototype.pledge = function() {
     success: function(response) {
       if(response.result === 'success') {
         console.log(response);
-        ReducetarianCalculator.sendEvent('Sent pledge', postData.EMAIL);
+        ReducetarianCalculator.sendEvent('Submitted pledge', postData.EMAIL);
         ReducetarianCalculator.state.mailchimpError = false;
         ReducetarianCalculator.state.pledgeTaken = true;
         riot.update();
       }
       else {
         console.log('Error: ' + response.msg);
-        ReducetarianCalculator.sendEvent('Pledge submitted, but MailChimp returned an error response', postData.EMAIL);
+        ReducetarianCalculator.sendEvent('Submitted pledge, but MailChimp returned an error response', postData.EMAIL);
         ReducetarianCalculator.state.mailchimpError = true;
         ReducetarianCalculator.state.mailchimpErrorMsg = response.msg;
 
