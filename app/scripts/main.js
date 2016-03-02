@@ -91,14 +91,13 @@ ReducetarianCalculator.prototype.initSocialTracking = function() {
 
 };
 
-
-
 ReducetarianCalculator.prototype.updateCharts = function() {
   this.updateBarChart();
   this.updateDonutChart();
 }
 
 ReducetarianCalculator.prototype.sendEvent = function(eventAction, eventLabel, eventValue) {
+  console.log('Sending event: ' + eventAction + ' : ' + eventLabel);
   if(typeof ga !== 'undefined') {
     ga('send', 'event', 'How much meat?', eventAction, eventLabel, eventValue);
   }
