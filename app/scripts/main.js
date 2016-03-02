@@ -54,10 +54,55 @@ function ReducetarianCalculator() {
   this.colors.grayHighlight = '#777';
 }
 
+ReducetarianCalculator.prototype.initSocialTracking = function() {
+
+  //
+  // Facebook
+  //
+  if(typeof FB !== 'undefined') {
+
+    // Like action
+    FB.Event.subscribe('edge.create', function(url) {
+      // For now we'll send two events, because Peter isn't sure which
+      // will be more convenient for reporting.
+      ReducetarianCalculator.sendEvent('facebook like', url);
+      if(typeof ga !== 'undefined') {
+        ga('send', 'social', 'facebook', 'like', url);
+      }
+    });
+  }
+
+  //
+  // Twitter
+  //
+
+  if(typeof twttr !== 'undefined') {
+    twttr.events.bind(
+      'click',
+      function () {
+        ReducetarianCalculator.sendEvent('clicked tweet button');
+
+        if(typeof ga !== 'undefined') {
+          ga('send', 'social', 'twitter', 'share');
+        }
+      }
+    );
+  }
+
+};
+
+
+
 ReducetarianCalculator.prototype.updateCharts = function() {
   this.updateBarChart();
   this.updateDonutChart();
-};
+}
+
+ReducetarianCalculator.prototype.sendEvent = function(eventAction, eventLabel, eventValue) {
+  if(typeof ga !== 'undefined') {
+    ga('send', 'event', 'How much meat?', eventAction, eventLabel, eventValue);
+  }
+}
 
 ReducetarianCalculator.prototype.updateBarChart = function() {
   if(this.charts.barChart !== null) {
@@ -154,9 +199,15 @@ ReducetarianCalculator.prototype.setUserInput = function(key, value) {
   // controlling infographic animation.
   if(key === 'meatyMealsPerDay' && this.userInput.meatyMealsPerDay === null) {
     this.setUserInput('firstResponseToMeatyMealsPerDay', value);
+    this.sendEvent('First response to meaty meals per day', value);
+
+    // Social APIs will be ready by now.
+    this.initSocialTracking();
   }
 
   this.userInput[key] = value;
+
+  this.sendEvent('Update meaty meals per day', value);
 
   this.calculateMeatyMealsPerWeek();
 };
@@ -234,20 +285,20 @@ ReducetarianCalculator.prototype.pledge = function() {
     'MEATY_DAYF' : ReducetarianCalculator.userInput.firstResponseToMeatyMealsPerDay,
   };
 
-  console.log('Sending POST request to MailChimp...');
-  console.log(postData);
-
   $.ajax({
     url: '//reducetarian.us9.list-manage.com/subscribe/post-json?u=fb882689434c18d812e401042&amp;id=f387e9040e&c=?',
     data: postData,
     success: function(response) {
       if(response.result === 'success') {
+        console.log(response);
+        ReducetarianCalculator.sendEvent('Sent pledge', postData.EMAIL);
         ReducetarianCalculator.state.mailchimpError = false;
         ReducetarianCalculator.state.pledgeTaken = true;
         riot.update();
       }
       else {
         console.log('Error: ' + response.msg);
+        ReducetarianCalculator.sendEvent('Pledge submitted, but MailChimp returned an error response', postData.EMAIL);
         ReducetarianCalculator.state.mailchimpError = true;
         ReducetarianCalculator.state.mailchimpErrorMsg = response.msg;
 
