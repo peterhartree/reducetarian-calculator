@@ -50,7 +50,7 @@
 
   <div class="meat-consumption-calculator">
 
-    <div id="question" class="row" hide={ ReducetarianCalculator.state.pledgeTaken }>
+    <div id="question" class="row margin-bottom-larger" hide={ ReducetarianCalculator.state.pledgeTaken }>
       <div class="col-sm-12 text-align-center">
         <div class="sqs-layout sqs-grid-12 columns-12 margin-bottom" data-type="page" data-updated-on="1430751008120" id="page-5546831be4b05a355109bc6a">
           <div class="row sqs-row">
@@ -65,9 +65,8 @@
         </div>
 
         <div class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-12 col-md-8 col-md-offset-2">
-          <p>&nbsp;</p>
           <p class="">You'll be amazed at how you compare to the rest of the&nbsp;world.</p>
-          <p class=""><strong>On a typical day, how many of your main meals have meat (red meat, poultry, or seafood) in&nbsp;them?</strong></p>
+          <p class="" style="max-width: 700px; margin: auto;"><strong>On a typical day, how many of your main meals have meat (red meat, poultry, or seafood) in&nbsp;them?</strong></p>
         </div>
 
         <div class="col-sm-12">
@@ -91,27 +90,30 @@
       </div>
     </div>
 
-    <div hide={ ReducetarianCalculator.userInput.meatyMealsPerDay == null }>
+    <div id="page" hide={ ReducetarianCalculator.userInput.meatyMealsPerDay == null }>
 
       <div id="result" class="text-align-center" hide={ ReducetarianCalculator.state.pledgeTaken }>
         <div class="row no-margin-top">
           <div class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
-            <h2>If you eat <strong>{ReducetarianCalculator.userInput.meatyMealsPerDay}</strong> meaty meals per day...</h2>
+            <h2 class="margin-bottom">If you eat <strong>{ReducetarianCalculator.userInput.meatyMealsPerDay}</strong> meaty meal<span hide={ ReducetarianCalculator.userInput.meatyMealsPerDay === 1 }>s</span> per day...</h2>
+
+            <p style="font-size: 21px;"><strong>Your meat consumption is <em>{ReducetarianCalculator.calculations.factorToAverageConsumption}</em> times the global average.</strong></p>
+            <p style="font-size: 21px;"><strong>You eat more meat than <em>{ReducetarianCalculator.calculations.globalConsumptionPercentile}%</em> of people.</strong></p>
           </div>
         </div>
 
-        <div class="row margin-top margin-bottom {ReducetarianCalculator.getInfographicClass()}">
+        <div class="row margin-top-larger margin-bottom">
 
           <div class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6">
             <div class="wrap-chart margin-bottom">
-              <h3>Your meat consumption is <strong>{ReducetarianCalculator.calculations.factorToAverageConsumption}</strong> times the global average!</h3>
+              <h3>Your meat consumption vs the global average</h3>
               <canvas id="barChart" width="320" height="300" style="margin-left: -20px;"></canvas>
             </div>
           </div>
 
           <div class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6">
             <div class="wrap-chart margin-bottom">
-              <h3>You eat more meat than <strong>{ReducetarianCalculator.calculations.globalConsumptionPercentile}%</strong> of people!</h3>
+              <h3>How you compare to the global population</h3>
               <canvas id="donutChart" width="300" height="300"></canvas>
             </div>
           </div>
@@ -169,7 +171,7 @@
                   <img src="http://peterhartree.github.io/reducetarian-calculator/images/water-droplet.png" class="margin-bottom">
                 </div>
 
-                  <p>saves the planet many gallons of water and lbs. of&nbsp;CO2</p>
+                  <p>saves the planet many gallons of water and tonnes of greenhouse&nbsp;gasses</p>
 
               </li>
 
@@ -286,6 +288,7 @@
       </div>
     </div>
   </div>
+
   this.setMealsPerDay = function(e) {
     var meatyMealsPerDay = parseInt(e.target.innerText);
     ReducetarianCalculator.setUserInput('meatyMealsPerDay', meatyMealsPerDay);
