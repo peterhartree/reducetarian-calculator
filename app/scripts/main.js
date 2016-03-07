@@ -290,7 +290,7 @@ ReducetarianCalculator.prototype.pledge = function() {
   };
 
   $.ajax({
-    url: '//reducetarian.us9.list-manage.com/subscribe/post-json?u=fb882689434c18d812e401042&amp;id=f387e9040e&c=?',
+    url: 'http://reducetarian.us9.list-manage.com/subscribe/post-json?u=fb882689434c18d812e401042&amp;id=f387e9040e&c=?',
     data: postData,
     success: function(response) {
       if(response.result === 'success') {
