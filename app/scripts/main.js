@@ -98,9 +98,13 @@ ReducetarianCalculator.prototype.updateCharts = function() {
 
 ReducetarianCalculator.prototype.sendEvent = function(eventAction, eventLabel, eventValue) {
   console.log('Sending event: ' + eventAction + ' : ' + eventLabel);
+
   if(typeof ga !== 'undefined') {
     ga('send', 'event', 'How much meat?', eventAction, eventLabel, eventValue);
   }
+
+  window['optimizely'] = window['optimizely'] || [];
+  window.optimizely.push(["trackEvent", eventAction]);
 }
 
 ReducetarianCalculator.prototype.updateBarChart = function() {
@@ -115,7 +119,7 @@ ReducetarianCalculator.prototype.updateBarChart = function() {
       labels: ["Global average", "You"],
       datasets: [
         {
-          label: "Lbs of meat consumption",
+          label: "Meat consumption (lbs)",
           fillColor: this.colors.gray,
           strokeColor: this.colors.gray,
           highlightFill: this.colors.grayHighlight,

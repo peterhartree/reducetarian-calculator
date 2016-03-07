@@ -12,10 +12,12 @@ html {
 
 h1 {
   font-weight: 700 !important;
+  color: $gray-dark;
 }
 
 h2,
 h3 {
+  color: $gray-dark;
   font-weight: 700 !important;
 
   strong {
@@ -55,6 +57,11 @@ legend {
   margin-bottom: 0.5rem;
   font-size: 1.25rem;
   letter-spacing: 1px;
+}
+
+em {
+  font-style: normal;
+  color: $brand-primary;
 }
 
 .large {
