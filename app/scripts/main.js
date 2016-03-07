@@ -298,6 +298,11 @@ ReducetarianCalculator.prototype.pledge = function() {
         ReducetarianCalculator.sendEvent('Submitted pledge', postData.EMAIL);
         ReducetarianCalculator.state.mailchimpError = false;
         ReducetarianCalculator.state.pledgeTaken = true;
+
+        $('html, body').animate({
+            scrollTop: $("#meat-consumption-calculator").offset().top
+        }, 1000);
+
         riot.update();
       }
       else {
@@ -305,6 +310,8 @@ ReducetarianCalculator.prototype.pledge = function() {
         ReducetarianCalculator.sendEvent('Submitted pledge, but MailChimp returned an error response', postData.EMAIL);
         ReducetarianCalculator.state.mailchimpError = true;
         ReducetarianCalculator.state.mailchimpErrorMsg = response.msg;
+
+        // @TODO: show a user visible error message.
 
         riot.update();
       }

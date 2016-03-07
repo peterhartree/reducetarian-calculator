@@ -48,7 +48,7 @@
   }(document, 'script', 'facebook-jssdk'));</script>
   <!-- End Facebook and Twitter SDKs -->
 
-  <div class="meat-consumption-calculator">
+  <div id="meat-consumption-calculator" class="meat-consumption-calculator">
 
     <div id="question" class="row margin-bottom-larger" hide={ ReducetarianCalculator.state.pledgeTaken }>
       <div class="col-sm-12 text-align-center">
