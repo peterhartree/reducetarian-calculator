@@ -1,30 +1,5 @@
 /* global riot */
 
-// Chart.Js tweak thanks to http://stackoverflow.com/a/31918380/2078758
-
-Chart.types.Bar.extend({
-    name: "BarAlt",
-    draw: function () {
-        Chart.types.Bar.prototype.draw.apply(this, arguments);
-
-        var ctx = this.chart.ctx;
-        ctx.save();
-        // text alignment and color
-        ctx.textAlign = "center";
-        ctx.textBaseline = "bottom";
-        ctx.fillStyle = this.options.scaleFontColor;
-        // position
-        var x = this.scale.xScalePaddingLeft * 0.4;
-        var y = this.chart.height / 2;
-        // change origin
-        ctx.translate(x, y)
-        // rotate text
-        ctx.rotate(-90 * Math.PI / 180);
-        ctx.fillText(this.datasets[0].label, 0, 0);
-        ctx.restore();
-    }
-});
-
 function ReducetarianCalculator() {
   this.views = {}; // Reference object for storing all view templates (RiotJS tags)
   this.userInput = {};
@@ -54,46 +29,23 @@ function ReducetarianCalculator() {
   this.colors.grayHighlight = '#777';
 }
 
-ReducetarianCalculator.prototype.initSocialTracking = function() {
+ReducetarianCalculator.prototype.sendFacebookShareEvent = function(e) {
+  var eventLabel = e.target.getAttribute('data-tracking-label');
 
-  //
-  // Facebook
-  //
-  if(typeof FB !== 'undefined') {
+  ReducetarianCalculator.sendEvent('Clicked Facebook share button', eventLabel);
+  ReducetarianCalculator.sendSocialEvent('facebook', 'share', eventLabel);
+};
 
-    // Like action
-    FB.Event.subscribe('edge.create', function(url) {
-      // For now we'll send two events, because Peter isn't sure which
-      // will be more convenient for reporting.
-      ReducetarianCalculator.sendEvent('Clicked Facebook like button', url);
-      if(typeof ga !== 'undefined') {
-        ga('send', 'social', 'facebook', 'like', url);
-      }
-    });
-  }
+ReducetarianCalculator.prototype.sendTweetEvent = function(e) {
+  var eventLabel = e.target.getAttribute('data-tracking-label');
 
-  //
-  // Twitter
-  //
-
-  if(typeof twttr !== 'undefined') {
-    twttr.events.bind(
-      'click',
-      function () {
-        ReducetarianCalculator.sendEvent('Clicked tweet button');
-
-        if(typeof ga !== 'undefined') {
-          ga('send', 'social', 'twitter', 'share');
-        }
-      }
-    );
-  }
-
+  ReducetarianCalculator.sendEvent('Clicked Tweet button', eventLabel);
+  ReducetarianCalculator.sendSocialEvent('twitter', 'share', eventLabel);
 };
 
 ReducetarianCalculator.prototype.updateCharts = function() {
-  this.updateBarChart();
-  this.updateDonutChart();
+  //this.updateBarChart();
+  //this.updateDonutChart();
 }
 
 ReducetarianCalculator.prototype.sendEvent = function(eventAction, eventLabel, eventValue) {
@@ -106,6 +58,16 @@ ReducetarianCalculator.prototype.sendEvent = function(eventAction, eventLabel, e
   window['optimizely'] = window['optimizely'] || [];
   window.optimizely.push(["trackEvent", eventAction]);
 }
+
+ReducetarianCalculator.prototype.sendSocialEvent = function(socialNetwork, eventAction, eventLabel) {
+
+  console.log('Sending social event: ' + socialNetwork + ' ' + eventAction + ' : ' + eventLabel);
+
+  if(typeof ga !== 'undefined') {
+    ga('send', 'social', socialNetwork, eventAction, eventLabel);
+  }
+}
+
 
 ReducetarianCalculator.prototype.updateBarChart = function() {
   if(this.charts.barChart !== null) {
@@ -203,9 +165,9 @@ ReducetarianCalculator.prototype.setUserInput = function(key, value) {
   if(key === 'meatyMealsPerDay' && this.userInput.meatyMealsPerDay === null) {
     this.setUserInput('firstResponseToMeatyMealsPerDay', value);
     this.sendEvent('Submitted first response to meaty meals per day', value);
-
-    // Social APIs will be ready by now.
-    this.initSocialTracking();
+  }
+  else if (key === 'strategy') {
+    this.sendEvent('Set strategy', value);
   }
   else {
     this.sendEvent('Updated meaty meals per day', value);
@@ -290,7 +252,8 @@ ReducetarianCalculator.prototype.pledge = function() {
   };
 
   $.ajax({
-    url: 'http://reducetarian.us9.list-manage.com/subscribe/post-json?u=fb882689434c18d812e401042&amp;id=f387e9040e&c=?',
+    //url: 'http://reducetarian.us9.list-manage.com/subscribe/post-json?u=fb882689434c18d812e401042&amp;id=f387e9040e&c=?',
+    url: 'https://zapier.com/hooks/catch/2l5csp/',
     data: postData,
     success: function(response) {
       if(response.result === 'success') {
@@ -316,7 +279,7 @@ ReducetarianCalculator.prototype.pledge = function() {
         riot.update();
       }
     },
-    dataType: 'jsonp',
+    dataType: 'json',
     error: function (resp, text) {
         console.log('mailchimp ajax submit error: ' + text);
     }

@@ -36,12 +36,13 @@ html {
   label,
   input,
   .btn {
-    font-size: 1rem;
+    font-size: 18px;
     line-height: 1.5;
   }
 
   p, ul {
     margin-top: 0;
+    margin-bottom: 18px;
 
     &:last-child {
       margin-bottom: 0;
@@ -51,8 +52,6 @@ html {
   input {
     border-width: 3px !important;
   }
-
-
 
   legend {
     font-weight: 700;
@@ -86,7 +85,8 @@ html {
     color: $red-error;
   }
 
-  .info {
+  .info,
+  .call-to-action {
     a {
       color: $brand-primary;
 
@@ -94,6 +94,42 @@ html {
         text-decoration: underline;
       }
     }
+  }
+
+  hr {
+    border: 0;
+    height: 3px;
+    background: #ddd;
+  }
+
+  .call-to-action {
+    hr {
+      margin-left: -10px;
+      margin-right: -10px;
+
+      &:first-child {
+        margin-bottom: 1rem;
+      }
+
+      &:last-child {
+        margin-top: 0.75rem;
+      }
+    }
+  }
+
+  .definition {
+    font-family: $font-family-serif;
+
+    p {
+      font-size: 24px;
+      margin-bottom: 0;
+
+      em {
+        font-style: italic;
+        color: $gray-dark;
+      }
+    }
+
   }
 
 }

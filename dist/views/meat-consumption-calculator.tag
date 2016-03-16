@@ -36,21 +36,9 @@
     </defs>
   </svg>
 
-  <!-- Facebook and Twitter SDKs -->
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-  <div id="fb-root"></div>
-  <script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=545196598910530";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));</script>
-  <!-- End Facebook and Twitter SDKs -->
+  <div id="meat-consumption-calculator" class="meat-consumption-calculator  margin-bottom-larger">
 
-  <div id="meat-consumption-calculator" class="meat-consumption-calculator">
-
-    <div id="question" class="row margin-bottom-larger" hide={ ReducetarianCalculator.state.pledgeTaken }>
+    <div id="question" class="row" hide={ ReducetarianCalculator.state.pledgeTaken }>
       <div class="col-sm-12 text-align-center">
         <div class="sqs-layout sqs-grid-12 columns-12 margin-bottom" data-type="page" data-updated-on="1430751008120" id="page-5546831be4b05a355109bc6a">
           <div class="row sqs-row">
@@ -66,7 +54,7 @@
 
         <div class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-12 col-md-8 col-md-offset-2">
           <p class="">You'll be amazed at how you compare to the rest of the&nbsp;world.</p>
-          <p class="" style="max-width: 700px; margin: auto;"><strong>On a typical day, how many of your main meals have meat (red meat, poultry, or seafood) in&nbsp;them?</strong></p>
+          <p class="" style="max-width: 650px; margin: auto;"><strong>On a typical day, how many of your main meals have red meat, poultry, or seafood in&nbsp;them?</strong></p>
         </div>
 
         <div class="col-sm-12">
@@ -92,54 +80,46 @@
 
     <div id="page" hide={ ReducetarianCalculator.userInput.meatyMealsPerDay == null }>
 
-      <div id="result" class="text-align-center" hide={ ReducetarianCalculator.state.pledgeTaken }>
+      <div id="result" class="no-graphs text-align-center" hide={ ReducetarianCalculator.state.pledgeTaken }>
         <div class="row no-margin-top">
-          <div class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
-            <h2 class="margin-bottom">If you eat <strong>{ReducetarianCalculator.userInput.meatyMealsPerDay}</strong> meaty meal<span hide={ ReducetarianCalculator.userInput.meatyMealsPerDay === 1 }>s</span> per day...</h2>
+          <div class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 
-            <p style="font-size: 21px;"><strong>Your meat consumption is <em>{ReducetarianCalculator.calculations.factorToAverageConsumption}</em> times the global average.</strong></p>
-            <p style="font-size: 21px;"><strong>You eat more meat than <em>{ReducetarianCalculator.calculations.globalConsumptionPercentile}%</em> of people.</strong></p>
-          </div>
-        </div>
+            <div class="well well-result">
+              <h2 class="margin-bottom">If you eat <strong>{ReducetarianCalculator.userInput.meatyMealsPerDay}</strong> meaty meal<span hide={ ReducetarianCalculator.userInput.meatyMealsPerDay === 1 }>s</span> per day...</h2>
 
-        <div class="row margin-top-larger margin-bottom">
+              <p style="font-size: 21px;"><strong>Your meat consumption is <em>{ReducetarianCalculator.calculations.factorToAverageConsumption}</em> times the global average.</strong></p>
+              <p style="font-size: 21px;"><strong>You eat more meat than <em>{ReducetarianCalculator.calculations.globalConsumptionPercentile}%</em> of people.</strong></p>
 
-          <div class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6">
-            <div class="wrap-chart margin-bottom">
-              <h3>Your meat consumption vs the global average</h3>
-              <canvas id="barChart" width="320" height="300" style="margin-left: -20px;"></canvas>
-            </div>
-          </div>
 
-          <div class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6">
-            <div class="wrap-chart margin-bottom">
-              <h3>How you compare to the global population</h3>
-              <canvas id="donutChart" width="300" height="300"></canvas>
+              <div class="row row-pre-pledge-share margin-top margin-bottom-small">
+                <div class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-12">
+
+                  <a onclick="{ sendTweetEvent }" data-tracking-label="Pre-pledge" href="https://twitter.com/home?status=How%20much%20meat%20do%20you%20eat?%20You'll%20be%20amazed%20at%20how%20you%20compare%20to%20the%20rest%20of%20the%20world.%20http%3A//reducetarian.org/how-much-meat/" class="btn-social btn-social-twitter" target="_blank"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16" class="icon icon-twitter"><path d="M16 3.538c-0.588 0.263-1.222 0.438-1.884 0.516 0.678-0.406 1.197-1.050 1.444-1.816-0.634 0.375-1.338 0.65-2.084 0.797-0.6-0.638-1.453-1.034-2.397-1.034-1.813 0-3.281 1.469-3.281 3.281 0 0.256 0.028 0.506 0.084 0.747-2.728-0.138-5.147-1.444-6.766-3.431-0.281 0.484-0.444 1.050-0.444 1.65 0 1.138 0.578 2.144 1.459 2.731-0.538-0.016-1.044-0.166-1.488-0.409 0 0.013 0 0.028 0 0.041 0 1.591 1.131 2.919 2.634 3.219-0.275 0.075-0.566 0.116-0.866 0.116-0.212 0-0.416-0.022-0.619-0.059 0.419 1.303 1.631 2.253 3.066 2.281-1.125 0.881-2.538 1.406-4.078 1.406-0.266 0-0.525-0.016-0.784-0.047 1.456 0.934 3.181 1.475 5.034 1.475 6.037 0 9.341-5.003 9.341-9.341 0-0.144-0.003-0.284-0.009-0.425 0.641-0.459 1.197-1.038 1.637-1.697z"></path></svg>Tweet</a>
+
+                  <a onclick="{ sendFacebookShareEvent }" data-tracking-label="Pre-pledge" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//reducetarian.org/how-much-meat/" target="_blank" class="btn-social btn-social-facebook"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16" class="icon icon-twitter"><path d="M9.5 3h2.5v-3h-2.5c-1.93 0-3.5 1.57-3.5 3.5v1.5h-2v3h2v8h3v-8h2.5l0.5-3h-3v-1.5c0-0.271 0.229-0.5 0.5-0.5z"></path></svg>Share</a>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
 
-        <div class="row">
+        <div class="row margin-top">
           <div class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-12">
-            <p class="smaller text-gray info"><svg class="icon icon-info"><use xlink:href="#icon-info"></use></svg> We're assuming your portion sizes are typical for a US citzen. <a href="/how-much-meat/data-and-assumptions/">Learn more</a> about our data sources and assumptions.</p>
+            <p class="smaller text-gray info"><svg class="icon icon-info"><use xlink:href="#icon-info"></use></svg> We're assuming typical US portion sizes. <a href="/how-much-meat/data-and-assumptions/">Learn more</a> about our data sources and assumptions.</p>
           </div>
         </div>
 
-        <div class="row row-pre-pledge-share margin-top-large">
-          <div class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-12">
-            <div class="wrap-btn-social">
-              <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://reducetarian.org/how-much-meat/" data-text="How much meat do you eat?" data-via="Reducetarian" data-related="Reducetarian"></a>
-            </div>
-            <div class="wrap-btn-social">
-              <div class="fb-like" data-href="http://reducetarian.org/how-much-meat/" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
-            </div>
-          </div>
-        </div>
 
         <div class="row margin-top-larger">
           <div class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
             <h2>What is a Reducetarian?</h2>
-            <p>A reducetarian is someone who chooses to reduce the amount of meat in their diet.</p>
+
+            <div style="max-width: 500px; padding-top: 5px; padding-left: 10px; padding-right: 10px; margin-left: auto; margin-right: auto;" class="definition">
+              <hr class="divider">
+            <p>A <em>reducetarian</em> is someone who chooses to <strong>reduce</strong> the amount of meat in their diet.</p>
+              <hr class="divider">
+            </div>
           </div>
         </div>
 
@@ -148,38 +128,45 @@
             <h2 class="margin-bottom-large">Every month, the typical reducetarian...</h2>
           </div>
         </div>
-
+        <div class="row">
+          <div class="col-sm-8 col-sm-offset-2">
             <ul class="row list-typical-benefits">
-              <li class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-4">
+              <li class="col-sm-12">
                 <div class="wrap-impact-image">
-                  <img src="http://peterhartree.github.io/reducetarian-calculator/images/heart.png" class="margin-bottom">
+                  <img src="http://peterhartree.github.io/reducetarian-calculator/images/heart.png">
                 </div>
 
-                  <p>reduces his or her risk of heart disease, diabetes, and certain kinds of&nbsp;cancers.</p>
+                  <p>... reduces his or her risk of heart disease, diabetes and&nbsp;cancer.</p>
 
               </li>
-              <li class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-4">
-                <div class="wrap-impact-image">
-                  <img src="http://peterhartree.github.io/reducetarian-calculator/images/pig.png" class="margin-bottom">
+              <li class="col-sm-12">
+                <div class="wrap-impact-image pull-right">
+                  <img src="http://peterhartree.github.io/reducetarian-calculator/images/pig.png">
                 </div>
 
-                  <p>spares several farmed animals from&nbsp;cruelty</p>
+                  <p>... spares several farmed animals from&nbsp;cruelty.</p>
 
               </li>
-              <li class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-4">
+              <li class="col-sm-12">
                 <div class="wrap-impact-image">
-                  <img src="http://peterhartree.github.io/reducetarian-calculator/images/water-droplet.png" class="margin-bottom">
+                  <img src="http://peterhartree.github.io/reducetarian-calculator/images/water-droplet.png">
                 </div>
 
-                  <p>saves the planet many gallons of water and tonnes of greenhouse&nbsp;gasses</p>
+                  <p>... saves the planet gallons of water and tonnes of greenhouse&nbsp;gasses.</p>
 
               </li>
 
             </ul>
 
-            <h2 class="margin-top-large margin-bottom-larger">So will you be a reducetarian?</h2>
+          </div>
+        </div>
 
+            <div style="max-width: 500px; margin-left: auto; margin-right: auto;" class="margin-bottom-larger call-to-action well">
+                <p>These are just a few of the <a href="/its-good/" target="_blank">many good reasons to reduce your meat&nbsp;consumption</a>.</p>
+                <p><a href="https://twitter.com/Reducetarian" target="_blank">Thousands of people</a> are choosing to eat less meat and become&nbsp;reducetarians.</p>
+                <p><strong>Will you join them?</strong></p>
 
+            </div>
       </div>
     </div>
 
@@ -255,8 +242,8 @@
 
                 <div class="col-md-12 text-align-center margin-top">
                   <input type="submit" class="btn btn-primary form-pledge__btn-submit" value="Take the pledge">
-                  <p class="error margin-top" hide={ ReducetarianCalculator.state.mailchimpError === false }>{ReducetarianCalculator.state.mailchimpErrorMsg}</p>
-                  <p class="margin-top no-margin-bottom smaller info">We'll send you a couple emails during your pledge to help keep you on track. We'll never spam you, and you can unsubscribe&nbsp;anytime.</p>
+                  <p class="error margin-top-small" hide={ ReducetarianCalculator.state.mailchimpError === false }>{ReducetarianCalculator.state.mailchimpErrorMsg}</p>
+                  <p class="margin-top-small no-margin-bottom smaller info">We'll send you a couple emails during your pledge to help keep you on track. We'll never spam you, and you can unsubscribe&nbsp;anytime.</p>
                 </div>
               </fieldset>
 
@@ -273,11 +260,12 @@
                   <h2>Encourage your friends to join&nbsp;you.</h2>
                   <p>You can have an even bigger positive impact if you persuade your friends to become reducetarians!</p>
                   <p>Please share this page on Facebook and Twitter and encourage your friends to take the pledge.</p>
+
                   <div class="wrap-btn-social">
-                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://reducetarian.org/how-much-meat/" data-text="How much meat do you eat?" data-via="Reducetarian" data-related="Reducetarian"></a>
+                    <a onclick="{ sendTweetEvent }" data-tracking-label="Post-pledge" href="https://twitter.com/home?status=How%20much%20meat%20do%20you%20eat?%20You'll%20be%20amazed%20at%20how%20you%20compare%20to%20the%20rest%20of%20the%20world.%20http%3A//reducetarian.org/how-much-meat/" class="btn-social btn-social-twitter" target="_blank"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16" class="icon icon-twitter"><path d="M16 3.538c-0.588 0.263-1.222 0.438-1.884 0.516 0.678-0.406 1.197-1.050 1.444-1.816-0.634 0.375-1.338 0.65-2.084 0.797-0.6-0.638-1.453-1.034-2.397-1.034-1.813 0-3.281 1.469-3.281 3.281 0 0.256 0.028 0.506 0.084 0.747-2.728-0.138-5.147-1.444-6.766-3.431-0.281 0.484-0.444 1.050-0.444 1.65 0 1.138 0.578 2.144 1.459 2.731-0.538-0.016-1.044-0.166-1.488-0.409 0 0.013 0 0.028 0 0.041 0 1.591 1.131 2.919 2.634 3.219-0.275 0.075-0.566 0.116-0.866 0.116-0.212 0-0.416-0.022-0.619-0.059 0.419 1.303 1.631 2.253 3.066 2.281-1.125 0.881-2.538 1.406-4.078 1.406-0.266 0-0.525-0.016-0.784-0.047 1.456 0.934 3.181 1.475 5.034 1.475 6.037 0 9.341-5.003 9.341-9.341 0-0.144-0.003-0.284-0.009-0.425 0.641-0.459 1.197-1.038 1.637-1.697z"></path></svg>Tweet</a>
                   </div>
                   <div class="wrap-btn-social">
-                    <div class="fb-like" data-href="http://reducetarian.org/how-much-meat/" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
+                    <a onclick="{ sendFacebookShareEvent }" data-tracking-label="Post-pledge" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//reducetarian.org/how-much-meat/" target="_blank" class="btn-social btn-social-facebook"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16" class="icon icon-twitter"><path d="M9.5 3h2.5v-3h-2.5c-1.93 0-3.5 1.57-3.5 3.5v1.5h-2v3h2v8h3v-8h2.5l0.5-3h-3v-1.5c0-0.271 0.229-0.5 0.5-0.5z"></path></svg>Share</a>
                   </div>
                 </div>
               </div>
@@ -297,6 +285,14 @@
     ReducetarianCalculator.updateImpactCalculation();
     riot.update();
     ReducetarianCalculator.updateCharts();
+  }
+
+  this.sendFacebookShareEvent = function(e) {
+    ReducetarianCalculator.sendFacebookShareEvent(e);
+  }
+
+  this.sendTweetEvent = function(e) {
+    ReducetarianCalculator.sendTweetEvent(e);
   }
 
   this.set = function(e) {

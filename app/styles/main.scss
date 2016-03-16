@@ -6,10 +6,12 @@
 @import "bootstrap/_buttons.scss";
 
 // Components
+@import "components/_buttons.scss";
 @import "components/_charts.scss";
 @import "components/_icons.scss";
 @import "components/_plates.scss";
 @import "components/_radio-buttons.scss";
+@import "components/_wells.scss";
 
 // Helper classes.
 @import "helpers/_bootstrap-xxs.scss";
@@ -34,22 +36,42 @@
     padding: 0 32px !important;
   }
 
+  .pull-right {
+    float: right !important;
+  }
+
+  .well-result {
+    padding-top: 30px;
+  }
+
   // The result section is shown after user reveals their
   // current diet.
 
   .list-typical-benefits {
     list-style: none;
     padding-left: 0;
+    text-align: left;
 
     li {
       margin-bottom: 1.5rem;
+      position: relative;
+      p {
+        position: absolute;
+        width: 50%;
+        left: 25%;
+        top: 50%;
+        transform: translateY(-50%);
+      }
     }
   }
 
   .wrap-impact-image {
+    float: left;
+    opacity: 1;
+    width: 25%;
     img {
       width: auto;
-      height: 100px;
+      height: 80px;
     }
   }
 
@@ -142,6 +164,17 @@
       letter-spacing: 2px;
       color: $brand-primary;
     }
+  }
+}
+
+
+//
+// Styling to facilitate AB tests
+//
+
+.no-graphs {
+  .row-graphs {
+    display: none;
   }
 }
 
