@@ -256,7 +256,7 @@ ReducetarianCalculator.prototype.pledge = function() {
     url: 'https://zapier.com/hooks/catch/2l5csp/',
     data: postData,
     success: function(response) {
-      if(response.result === 'success') {
+
         console.log(response);
         ReducetarianCalculator.sendEvent('Submitted pledge', postData.EMAIL);
         ReducetarianCalculator.state.mailchimpError = false;
@@ -267,17 +267,6 @@ ReducetarianCalculator.prototype.pledge = function() {
         }, 1000);
 
         riot.update();
-      }
-      else {
-        console.log('Error: ' + response.msg);
-        ReducetarianCalculator.sendEvent('Submitted pledge, but MailChimp returned an error response', postData.EMAIL);
-        ReducetarianCalculator.state.mailchimpError = true;
-        ReducetarianCalculator.state.mailchimpErrorMsg = response.msg;
-
-        // @TODO: show a user visible error message.
-
-        riot.update();
-      }
     },
     dataType: 'json',
     error: function (resp, text) {
