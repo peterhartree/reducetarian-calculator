@@ -52,27 +52,44 @@
     padding-left: 0;
     text-align: left;
 
-    li {
-      margin-bottom: 1.5rem;
-      position: relative;
-      p {
-        position: absolute;
-        width: 50%;
-        left: 25%;
-        top: 50%;
-        transform: translateY(-50%);
+    @media screen and (min-width: $screen-sm) {
+      li {
+        margin-bottom: 1.5rem;
+        position: relative;
+        p {
+          position: absolute;
+          width: 50%;
+          left: 25%;
+          top: 50%;
+          transform: translateY(-50%);
+        }
       }
     }
+
   }
 
   .wrap-impact-image {
-    float: left;
-    opacity: 1;
-    width: 25%;
+    display: block;
+
+    width: 100%;
+    text-align: center;
+
     img {
+      margin: auto;
       width: auto;
-      height: 80px;
+      max-height: 100px;
     }
+
+    @media screen and (min-width: $screen-sm) {
+      float: left;
+      opacity: 1;
+      width: 25%;
+      img {
+        width: auto;
+        height: 80px;
+      }
+    }
+
   }
 
   // Pledge form

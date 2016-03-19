@@ -161,7 +161,7 @@
           </div>
         </div>
 
-            <div style="max-width: 500px; margin-left: auto; margin-right: auto;" class="margin-bottom-larger call-to-action well">
+            <div style="max-width: 500px; margin-left: auto; margin-right: auto;" class="margin-top-large margin-bottom-larger call-to-action well">
                 <p>These are just a few of the <a href="/its-good/" target="_blank">many good reasons to reduce your meat&nbsp;consumption</a>.</p>
                 <p><a href="https://twitter.com/Reducetarian" target="_blank">Thousands of people</a> are choosing to eat less meat and become&nbsp;reducetarians.</p>
                 <p><strong>Will you join them?</strong></p>
@@ -289,9 +289,7 @@
 
   this.facebookShare = function(e) {
     ReducetarianCalculator.sendFacebookShareEvent(e);
-    console.log(e.target.href);
     var url = e.target.getAttribute('href');
-    console.log(url);
     var win = window.open(url, '_blank');
   }
 
