@@ -3,7 +3,8 @@
   "private": true,
   "dependencies": {
     "bootstrap-sass": "~3.3.5",
-    "riot": "~2.3.11"
+    "riot": "~2.3.11",
+    "Chart.js": "^1.0.2"
   },
   "overrides": {
     "bootstrap-sass": {
