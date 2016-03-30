@@ -1,5 +1,30 @@
 /* global riot */
 
+// Chart.Js tweak thanks to http://stackoverflow.com/a/31918380/2078758
+
+Chart.types.Bar.extend({
+    name: "BarAlt",
+    draw: function () {
+        Chart.types.Bar.prototype.draw.apply(this, arguments);
+
+        var ctx = this.chart.ctx;
+        ctx.save();
+        // text alignment and color
+        ctx.textAlign = "center";
+        ctx.textBaseline = "bottom";
+        ctx.fillStyle = this.options.scaleFontColor;
+        // position
+        var x = this.scale.xScalePaddingLeft * 0.4;
+        var y = this.chart.height / 2;
+        // change origin
+        ctx.translate(x, y)
+        // rotate text
+        ctx.rotate(-90 * Math.PI / 180);
+        ctx.fillText(this.datasets[0].label, 0, 0);
+        ctx.restore();
+    }
+});
+
 function ReducetarianCalculator() {
   this.views = {}; // Reference object for storing all view templates (RiotJS tags)
   this.userInput = {};
@@ -44,8 +69,8 @@ ReducetarianCalculator.prototype.sendTweetEvent = function(e) {
 };
 
 ReducetarianCalculator.prototype.updateCharts = function() {
-  //this.updateBarChart();
-  //this.updateDonutChart();
+  this.updateBarChart();
+  this.updateDonutChart();
 }
 
 ReducetarianCalculator.prototype.sendEvent = function(eventAction, eventLabel, eventValue) {
