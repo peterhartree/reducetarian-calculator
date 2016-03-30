@@ -94,12 +94,29 @@
               <div class="row row-pre-pledge-share margin-top margin-bottom-small">
                 <div class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-12">
 
-                  <a onclick="{ tweet }" data-tracking-label="Pre-pledge" href="https://twitter.com/home?status=How%20much%20meat%20do%20you%20eat?%20You'll%20be%20amazed%20at%20how%20you%20compare%20to%20the%20rest%20of%20the%20world.%20http%3A//reducetarian.org/how-much-meat/" class="btn-social btn-social-twitter" target="_blank"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16" class="icon icon-twitter"><path d="M16 3.538c-0.588 0.263-1.222 0.438-1.884 0.516 0.678-0.406 1.197-1.050 1.444-1.816-0.634 0.375-1.338 0.65-2.084 0.797-0.6-0.638-1.453-1.034-2.397-1.034-1.813 0-3.281 1.469-3.281 3.281 0 0.256 0.028 0.506 0.084 0.747-2.728-0.138-5.147-1.444-6.766-3.431-0.281 0.484-0.444 1.050-0.444 1.65 0 1.138 0.578 2.144 1.459 2.731-0.538-0.016-1.044-0.166-1.488-0.409 0 0.013 0 0.028 0 0.041 0 1.591 1.131 2.919 2.634 3.219-0.275 0.075-0.566 0.116-0.866 0.116-0.212 0-0.416-0.022-0.619-0.059 0.419 1.303 1.631 2.253 3.066 2.281-1.125 0.881-2.538 1.406-4.078 1.406-0.266 0-0.525-0.016-0.784-0.047 1.456 0.934 3.181 1.475 5.034 1.475 6.037 0 9.341-5.003 9.341-9.341 0-0.144-0.003-0.284-0.009-0.425 0.641-0.459 1.197-1.038 1.637-1.697z"></path></svg>Tweet</a>
+                  <a onclick="{ sendTweetEvent }" data-tracking-label="Pre-pledge" href="https://twitter.com/home?status=How%20much%20meat%20do%20you%20eat?%20You'll%20be%20amazed%20at%20how%20you%20compare%20to%20the%20rest%20of%20the%20world.%20http%3A//reducetarian.org/how-much-meat/" class="btn-social btn-social-twitter" target="_blank"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16" class="icon icon-twitter"><path d="M16 3.538c-0.588 0.263-1.222 0.438-1.884 0.516 0.678-0.406 1.197-1.050 1.444-1.816-0.634 0.375-1.338 0.65-2.084 0.797-0.6-0.638-1.453-1.034-2.397-1.034-1.813 0-3.281 1.469-3.281 3.281 0 0.256 0.028 0.506 0.084 0.747-2.728-0.138-5.147-1.444-6.766-3.431-0.281 0.484-0.444 1.050-0.444 1.65 0 1.138 0.578 2.144 1.459 2.731-0.538-0.016-1.044-0.166-1.488-0.409 0 0.013 0 0.028 0 0.041 0 1.591 1.131 2.919 2.634 3.219-0.275 0.075-0.566 0.116-0.866 0.116-0.212 0-0.416-0.022-0.619-0.059 0.419 1.303 1.631 2.253 3.066 2.281-1.125 0.881-2.538 1.406-4.078 1.406-0.266 0-0.525-0.016-0.784-0.047 1.456 0.934 3.181 1.475 5.034 1.475 6.037 0 9.341-5.003 9.341-9.341 0-0.144-0.003-0.284-0.009-0.425 0.641-0.459 1.197-1.038 1.637-1.697z"></path></svg>Tweet</a>
 
-                  <a onclick="{ facebookShare }" data-tracking-label="Pre-pledge" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//reducetarian.org/how-much-meat/" target="_blank" class="btn-social btn-social-facebook"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16" class="icon icon-twitter"><path d="M9.5 3h2.5v-3h-2.5c-1.93 0-3.5 1.57-3.5 3.5v1.5h-2v3h2v8h3v-8h2.5l0.5-3h-3v-1.5c0-0.271 0.229-0.5 0.5-0.5z"></path></svg>Share</a>
+                  <a onclick="{ sendFacebookShareEvent }" data-tracking-label="Pre-pledge" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//reducetarian.org/how-much-meat/" target="_blank" class="btn-social btn-social-facebook"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16" class="icon icon-twitter"><path d="M9.5 3h2.5v-3h-2.5c-1.93 0-3.5 1.57-3.5 3.5v1.5h-2v3h2v8h3v-8h2.5l0.5-3h-3v-1.5c0-0.271 0.229-0.5 0.5-0.5z"></path></svg>Share</a>
                 </div>
               </div>
 
+            </div>
+          </div>
+        </div>
+
+        <div class="row margin-top-larger margin-bottom">
+
+          <div class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6">
+            <div class="wrap-chart margin-bottom">
+              <h3>Your meat consumption vs the global average</h3>
+              <canvas id="barChart" width="320" height="300" style="margin-left: -20px;"></canvas>
+            </div>
+          </div>
+
+          <div class="col-xxs-12 col-xxs-offset-0 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6">
+            <div class="wrap-chart margin-bottom">
+              <h3>How you compare to the global population</h3>
+              <canvas id="donutChart" width="300" height="300"></canvas>
             </div>
           </div>
         </div>
@@ -161,7 +178,7 @@
           </div>
         </div>
 
-            <div style="max-width: 500px; margin-left: auto; margin-right: auto;" class="margin-top-large margin-bottom-larger call-to-action well">
+            <div style="max-width: 500px; margin-left: auto; margin-right: auto;" class="margin-bottom-larger call-to-action well">
                 <p>These are just a few of the <a href="/its-good/" target="_blank">many good reasons to reduce your meat&nbsp;consumption</a>.</p>
                 <p><a href="https://twitter.com/Reducetarian" target="_blank">Thousands of people</a> are choosing to eat less meat and become&nbsp;reducetarians.</p>
                 <p><strong>Will you join them?</strong></p>
@@ -262,10 +279,10 @@
                   <p>Please share this page on Facebook and Twitter and encourage your friends to take the pledge.</p>
 
                   <div class="wrap-btn-social">
-                    <a onclick="{ tweet }" data-tracking-label="Post-pledge" href="https://twitter.com/home?status=How%20much%20meat%20do%20you%20eat?%20You'll%20be%20amazed%20at%20how%20you%20compare%20to%20the%20rest%20of%20the%20world.%20http%3A//reducetarian.org/how-much-meat/" class="btn-social btn-social-twitter" target="_blank"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16" class="icon icon-twitter"><path d="M16 3.538c-0.588 0.263-1.222 0.438-1.884 0.516 0.678-0.406 1.197-1.050 1.444-1.816-0.634 0.375-1.338 0.65-2.084 0.797-0.6-0.638-1.453-1.034-2.397-1.034-1.813 0-3.281 1.469-3.281 3.281 0 0.256 0.028 0.506 0.084 0.747-2.728-0.138-5.147-1.444-6.766-3.431-0.281 0.484-0.444 1.050-0.444 1.65 0 1.138 0.578 2.144 1.459 2.731-0.538-0.016-1.044-0.166-1.488-0.409 0 0.013 0 0.028 0 0.041 0 1.591 1.131 2.919 2.634 3.219-0.275 0.075-0.566 0.116-0.866 0.116-0.212 0-0.416-0.022-0.619-0.059 0.419 1.303 1.631 2.253 3.066 2.281-1.125 0.881-2.538 1.406-4.078 1.406-0.266 0-0.525-0.016-0.784-0.047 1.456 0.934 3.181 1.475 5.034 1.475 6.037 0 9.341-5.003 9.341-9.341 0-0.144-0.003-0.284-0.009-0.425 0.641-0.459 1.197-1.038 1.637-1.697z"></path></svg>Tweet</a>
+                    <a onclick="{ sendTweetEvent }" data-tracking-label="Post-pledge" href="https://twitter.com/home?status=How%20much%20meat%20do%20you%20eat?%20You'll%20be%20amazed%20at%20how%20you%20compare%20to%20the%20rest%20of%20the%20world.%20http%3A//reducetarian.org/how-much-meat/" class="btn-social btn-social-twitter" target="_blank"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16" class="icon icon-twitter"><path d="M16 3.538c-0.588 0.263-1.222 0.438-1.884 0.516 0.678-0.406 1.197-1.050 1.444-1.816-0.634 0.375-1.338 0.65-2.084 0.797-0.6-0.638-1.453-1.034-2.397-1.034-1.813 0-3.281 1.469-3.281 3.281 0 0.256 0.028 0.506 0.084 0.747-2.728-0.138-5.147-1.444-6.766-3.431-0.281 0.484-0.444 1.050-0.444 1.65 0 1.138 0.578 2.144 1.459 2.731-0.538-0.016-1.044-0.166-1.488-0.409 0 0.013 0 0.028 0 0.041 0 1.591 1.131 2.919 2.634 3.219-0.275 0.075-0.566 0.116-0.866 0.116-0.212 0-0.416-0.022-0.619-0.059 0.419 1.303 1.631 2.253 3.066 2.281-1.125 0.881-2.538 1.406-4.078 1.406-0.266 0-0.525-0.016-0.784-0.047 1.456 0.934 3.181 1.475 5.034 1.475 6.037 0 9.341-5.003 9.341-9.341 0-0.144-0.003-0.284-0.009-0.425 0.641-0.459 1.197-1.038 1.637-1.697z"></path></svg>Tweet</a>
                   </div>
                   <div class="wrap-btn-social">
-                    <a onclick="{ facebookShare }" data-tracking-label="Post-pledge" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//reducetarian.org/how-much-meat/" target="_blank" class="btn-social btn-social-facebook"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16" class="icon icon-twitter"><path d="M9.5 3h2.5v-3h-2.5c-1.93 0-3.5 1.57-3.5 3.5v1.5h-2v3h2v8h3v-8h2.5l0.5-3h-3v-1.5c0-0.271 0.229-0.5 0.5-0.5z"></path></svg>Share</a>
+                    <a onclick="{ sendFacebookShareEvent }" data-tracking-label="Post-pledge" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//reducetarian.org/how-much-meat/" target="_blank" class="btn-social btn-social-facebook"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16" class="icon icon-twitter"><path d="M9.5 3h2.5v-3h-2.5c-1.93 0-3.5 1.57-3.5 3.5v1.5h-2v3h2v8h3v-8h2.5l0.5-3h-3v-1.5c0-0.271 0.229-0.5 0.5-0.5z"></path></svg>Share</a>
                   </div>
                 </div>
               </div>
@@ -287,17 +304,12 @@
     ReducetarianCalculator.updateCharts();
   }
 
-  this.facebookShare = function(e) {
+  this.sendFacebookShareEvent = function(e) {
     ReducetarianCalculator.sendFacebookShareEvent(e);
-    var url = e.target.getAttribute('href');
-    var win = window.open(url, '_blank');
   }
 
-  this.tweet = function(e) {
+  this.sendTweetEvent = function(e) {
     ReducetarianCalculator.sendTweetEvent(e);
-
-    var url = e.target.getAttribute('href');
-    var win = window.open(url, '_blank');
   }
 
   this.set = function(e) {
