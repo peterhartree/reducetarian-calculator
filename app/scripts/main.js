@@ -283,7 +283,7 @@ ReducetarianCalculator.prototype.pledge = function() {
     success: function(response) {
 
         console.log(response);
-        ReducetarianCalculator.sendEvent('Submitted pledge', postData.EMAIL);
+        ReducetarianCalculator.sendEvent('Submitted pledge');
         ReducetarianCalculator.state.mailchimpError = false;
         ReducetarianCalculator.state.pledgeTaken = true;
 
